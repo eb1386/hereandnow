@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Here and Now by VentureLift</title>
+<meta name="description" content="Here and Now: A Financial Start. Personal finance, people skills and smart choices for students in Grades 7–8. By VentureLift, hosted at St. George's School, Vancouver."/>
+<meta name="theme-color" content="#eef5ef"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Figtree:ital,wght@0,400..700;1,400&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link href="https://images.squarespace-cdn.com/content/v1/690ce620a851f31c1c67d887/1fa5ad78-459d-4174-8f27-3ee49b73bb4c/favicon.ico?format=100w" rel="icon"/>
+<style>
+:root {
+  --green: #0b7a43;
+  --green-dark: #085f34;
+  --leaf: #3fbf75;
+  --mint: #e4f1e8;
+  --mint-2: #cfe7d7;
+  --forest: #0c2a1c;
+  --forest-2: #123826;
+  --gold: #e0a80d;
+  --gold-soft: #f6d77a;
+  --cream: #f6f0de;
+  --paper: #f7f6f1;
+  --ink: #10241a;
+  --stroke: #17271f;
+  --text: #34403a;
+  --muted: #66716b;
+  --font: 'Figtree', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Bricolage Grotesque', 'Figtree', 'Helvetica Neue', Arial, sans-serif;
+  --wrap: 1200px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  font-family: var(--font); font-size: 16px; line-height: 1.6;
+  background: var(--paper); color: var(--text);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img, svg, canvas { display: block; max-width: 100%; }
+button { font: inherit; }
+::selection { background: var(--green); color: #fff; }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 6px; }
+.wrap { width: min(var(--wrap), 100%); margin: 0 auto; padding: 0 var(--gutter); }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ───────── Floating glass nav ───────── */
+.pill-nav {
+  position: fixed; top: 16px; left: 50%; z-index: 100;
+  transform: translateX(-50%);
+  display: flex; align-items: center; gap: 4px;
+  padding: 6px 6px 6px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.52);
+  -webkit-backdrop-filter: blur(18px) saturate(170%); backdrop-filter: blur(18px) saturate(170%);
+  box-shadow: 0 10px 30px rgba(16,36,26,.10), inset 0 0 0 1px rgba(255,255,255,.75);
+  transition: background .5s, box-shadow .5s, color .5s;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.pill-nav.dark { background: rgba(18,48,33,.5); box-shadow: 0 10px 30px rgba(0,0,0,.25), inset 0 0 0 1px rgba(255,255,255,.14); color: #fff; }
+.pn-brand { font-family: var(--font-heading); font-weight: 800; font-size: 1.02rem; letter-spacing: -.03em; margin-right: 12px; }
+.pn-brand i { font-style: normal; font-weight: 500; color: var(--green); transition: color .5s; }
+.pill-nav.dark .pn-brand i { color: var(--gold-soft); }
+.pn-links { position: relative; display: flex; align-items: center; }
+.pn-links a { position: relative; z-index: 1; padding: 9px 15px; font-size: .9rem; font-weight: 600; opacity: .78; transition: opacity .25s; }
+.pn-links a:hover, .pn-links a.on { opacity: 1; }
+.pn-ind { position: absolute; top: 0; bottom: 0; left: 0; width: 0; border-radius: 999px; background: rgba(255,255,255,.85); box-shadow: 0 2px 10px rgba(16,36,26,.08); opacity: 0; transition: background .5s; }
+.pill-nav.dark .pn-ind { background: rgba(255,255,255,.14); box-shadow: none; }
+.pn-cta { margin-left: 6px; padding: 9px 18px; border-radius: 999px; background: var(--green); color: #fff; font-size: .9rem; font-weight: 600; transition: background .2s; }
+.pn-cta:hover { background: var(--green-dark); }
+@media (max-width: 760px) { .pn-links a.opt { display: none; } }
+@media (max-width: 460px) { .pn-links { display: none; } .pill-nav { padding-left: 16px; } }
+
+/* ───────── Hero ───────── */
+.hero {
+  position: relative; height: 100svh; min-height: 640px; overflow: hidden;
+  background: linear-gradient(180deg, #e6f1ec 0%, #eef4ea 38%, #f7f1dd 78%, #fbeec8 100%);
+  isolation: isolate;
+}
+.sun { position: absolute; width: 70vmax; height: 70vmax; right: -16vmax; top: -30vmax; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,226,140,.75) 0%, rgba(255,226,140,.28) 30%, rgba(255,226,140,0) 62%); z-index: 0; pointer-events: none; }
+.cloud { position: absolute; z-index: 0; border-radius: 50%; background: #fff; filter: blur(28px); opacity: .7; pointer-events: none; animation: drift 90s linear infinite; }
+.cloud.c1 { width: 420px; height: 90px; top: 16%; left: -10%; }
+.cloud.c2 { width: 300px; height: 70px; top: 30%; left: 40%; opacity: .5; animation-duration: 120s; animation-delay: -40s; }
+.cloud.c3 { width: 520px; height: 110px; top: 8%; left: 70%; opacity: .55; animation-duration: 140s; animation-delay: -80s; }
+@keyframes drift { from { transform: translateX(-30vw); } to { transform: translateX(110vw); } }
+.meadow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.meadow-back { z-index: 1; }
+.meadow-front { z-index: 3; }
+.hero-copy { position: absolute; z-index: 2; left: 0; right: 0; top: clamp(110px, 17vh, 190px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: center; }
+.hero-main { display: flex; flex-direction: column; align-items: flex-start; }
+.hero-info {
+  width: 320px; padding: 24px 26px; border-radius: 24px;
+  background: rgba(255,255,255,.5);
+  -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.8);
+  color: var(--ink);
+}
+.hi-date { font-family: var(--font-heading); font-size: 1.45rem; font-weight: 700; line-height: 1.15; letter-spacing: -.03em; color: var(--green-dark); margin-bottom: 12px; }
+.hi-line { font-size: 1rem; line-height: 1.55; color: var(--text); }
+.hi-line a { text-decoration: underline; text-decoration-color: rgba(16,36,26,.3); text-underline-offset: .2em; transition: color .2s, text-decoration-color .2s; }
+.hi-line a:hover { color: var(--green); text-decoration-color: currentColor; }
+.hi-link { display: inline-flex; gap: 8px; margin-top: 14px; font-weight: 600; font-size: .95rem; color: var(--green); }
+.hi-link .arr { transition: transform .3s var(--ease-out); }
+.hi-link:hover .arr { transform: translateX(3px); }
+@media (max-width: 1000px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 22px; }
+  .hero-info { width: auto; padding: 0; background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .hi-date { font-size: 1.1rem; margin-bottom: 2px; }
+  .hi-line { display: inline; font-size: .95rem; }
+  .hi-line + .hi-line::before { content: ' · '; color: var(--muted); }
+  .hi-link { display: none; }
+}
+.hero-lede { margin-top: 0; max-width: 30ch; font-family: var(--font-heading); font-size: clamp(1.5rem, 2.7vw, 2.35rem); font-weight: 600; line-height: 1.16; letter-spacing: -.03em; color: var(--ink); }
+.hero-lede span { color: var(--green); }
+.hero-actions { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-title {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(110px, 17vh, 200px);
+  font-family: var(--font-heading); font-weight: 800; color: var(--ink);
+  font-size: clamp(4.6rem, 14.4vw, 16rem); line-height: .8; letter-spacing: -.045em;
+  text-align: center; white-space: nowrap;
+}
+.hero-title .t { position: relative; display: inline-block; }
+.hero-title .ch { display: inline-block; will-change: transform; }
+.hero-title .and { color: var(--green); font-weight: 600; }
+.hero-title .sp { display: inline-block; width: .18em; }
+.hero-title .by {
+  position: absolute; right: .08em; top: -.55em;
+  font-weight: 600; letter-spacing: -.02em;
+  font-size: .13em; line-height: 1; color: var(--green-dark);
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .18em; text-decoration-thickness: .06em;
+  transition: color .2s, text-decoration-color .25s;
+}
+.hero-title .by:hover { color: var(--green); text-decoration-color: currentColor; }
+.hero-title .m-br { display: none; }
+.scroll-cue { position: absolute; z-index: 4; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.85); }
+.scroll-cue i { width: 2px; height: 26px; border-radius: 2px; background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,0)); animation: cue 2.2s ease-in-out infinite; transform-origin: top; }
+@keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+@media (max-width: 700px) {
+  .hero-title { font-size: 23vw; line-height: .86; bottom: 15vh; }
+  .hero-title .m-br { display: block; }
+  .hero-title .sp2 { display: none; }
+  .hero-title .by { top: -1.2em; right: auto; left: .1em; font-size: .16em; }
+  .hero-title .t { text-align: left; }
+  .hero-copy { top: 96px; }
+}
+
+/* ───────── Buttons ───────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 50px; padding: 0 22px; border-radius: 12px;
+  font: 600 1rem var(--font); border: 0; cursor: pointer;
+  transition: background-color .2s ease, color .2s ease;
+}
+.btn .arr { display: inline-block; transition: transform .3s var(--ease-out); }
+.btn:hover .arr { transform: translateX(3px); }
+.btn-green { background: var(--green); color: #fff; }
+.btn-green:hover { background: var(--green-dark); }
+.btn-line { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px rgba(16,36,26,.22); }
+.btn-line:hover { background: rgba(16,36,26,.05); }
+
+/* ───────── Shared type ───────── */
+.kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 1rem; font-weight: 600; color: var(--green); }
+.kicker svg { width: 18px; height: 18px; }
+.h2 { font-family: var(--font-heading); font-size: clamp(2.3rem, 5vw, 4.4rem); font-weight: 700; line-height: 1; letter-spacing: -.045em; color: var(--ink); }
+.h2 em { font-style: normal; color: var(--green); }
+.lede { font-size: clamp(1.05rem, 1.35vw, 1.2rem); line-height: 1.7; color: var(--text); max-width: 56ch; }
+.split-line { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.split-line > span { display: block; }
+
+/* ───────── Intro statement ───────── */
+.intro { background: var(--forest); color: #fff; position: relative; margin-top: -1px; }
+.intro-inner { padding-top: clamp(96px, 14vw, 200px); padding-bottom: clamp(96px, 14vw, 200px); }
+.statement { font-family: var(--font-heading); font-size: clamp(1.9rem, 4.4vw, 4rem); font-weight: 600; line-height: 1.12; letter-spacing: -.035em; max-width: 22ch; }
+.statement .hl { color: var(--leaf); }
+.statement .hl-g { color: var(--gold-soft); }
+.intro-sub { margin-top: clamp(32px, 4vw, 56px); margin-left: auto; max-width: 46ch; font-size: clamp(1.05rem, 1.35vw, 1.2rem); line-height: 1.75; color: rgba(255,255,255,.78); }
+
+/* ───────── Pillars story ───────── */
+.pillars { background: var(--paper); position: relative; }
+.pillars-head { padding-top: clamp(96px, 12vw, 170px); padding-bottom: clamp(24px, 4vw, 48px); max-width: 900px; }
+.pillars-head .h2 { margin-top: 0; }
+.pillars-head .lede { margin-top: 22px; }
+.story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); padding-bottom: clamp(60px, 10vw, 140px); }
+.stage { position: sticky; top: 14vh; height: 72vh; display: none; }
+.stage-bg { position: absolute; inset: 0; border-radius: 36px; background: var(--mint); overflow: hidden; }
+.stage-bg::before { content: ''; position: absolute; width: 80%; aspect-ratio: 1; left: 50%; top: 50%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.75), rgba(255,255,255,0) 65%); }
+.stage .fig { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 8%; }
+.stage .fig svg { width: 100%; max-height: 100%; }
+.steps { display: flex; flex-direction: column; }
+.step { padding: clamp(28px, 5vw, 56px) 0; }
+.step .fig { border-radius: 28px; background: var(--mint); padding: 8%; margin-bottom: 28px; }
+.step[data-i="1"] .fig { background: #f4ecd3; }
+.step[data-i="2"] .fig { background: #e3edf3; }
+.step[data-i="3"] .fig { background: #efe9df; }
+.step h3 { font-family: var(--font-heading); font-size: clamp(2rem, 3.6vw, 3.2rem); font-weight: 700; line-height: 1.02; letter-spacing: -.045em; color: var(--ink); }
+.step h3 em { font-style: normal; color: var(--green); }
+.step p { margin-top: 20px; font-size: 1.1rem; line-height: 1.75; color: var(--text); max-width: 50ch; }
+.learn { margin-top: 28px; list-style: none; display: grid; grid-template-columns: repeat(2, max-content); gap: 14px 32px; }
+@media (max-width: 480px) { .learn { grid-template-columns: 1fr; } }
+.learn li { display: inline-flex; align-items: center; gap: 12px; font-weight: 600; font-size: 1.02rem; color: var(--ink); }
+.learn li .ck { width: 24px; height: 24px; flex: none; overflow: visible; }
+.ck-bg { fill: var(--green); }
+.ck-mark { fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.learn li:hover .ck-bg { fill: var(--green-dark); }
+.ill { overflow: visible; }
+.ill .ln { fill: none; stroke: var(--stroke); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.ill .ln-thin { fill: none; stroke: var(--stroke); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ill .f-green { fill: var(--green); }
+.ill .f-leaf { fill: var(--leaf); }
+.ill .f-mint { fill: var(--mint-2); }
+.ill .f-white { fill: #fff; }
+.ill .f-gold { fill: var(--gold); }
+.ill .f-gold-soft { fill: var(--gold-soft); }
+.ill .f-ink { fill: var(--stroke); }
+.ill .glass { fill: rgba(255,255,255,.6); }
+.ill .shadow { fill: rgba(23,39,31,.09); }
+.ill text { font-family: var(--font); font-weight: 700; }
+@media (min-width: 901px) {
+  .js-story .stage { display: block; }
+  .js-story .step { min-height: 78vh; display: flex; flex-direction: column; justify-content: center; opacity: .22; transition: opacity .5s ease; }
+  .js-story .step.on { opacity: 1; }
+}
+@media (max-width: 900px) { .story { grid-template-columns: 1fr; } }
+
+/* ───────── Grow ───────── */
+.grow { background: var(--cream); position: relative; overflow: hidden; }
+.grow-inner { padding-top: clamp(96px, 12vw, 160px); padding-bottom: clamp(96px, 12vw, 160px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
+.grow-copy .h2 { margin-top: 0; }
+.grow-copy .lede { margin-top: 22px; }
+.controls { margin-top: 40px; display: flex; flex-direction: column; gap: 30px; max-width: 440px; }
+.control label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 1rem; font-weight: 500; color: var(--muted); }
+.control output { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; margin-top: 12px; height: 30px; background: transparent; cursor: pointer; --pct: 50%; }
+input[type=range]::-webkit-slider-runnable-track { height: 8px; border-radius: 8px; background: linear-gradient(90deg, var(--green) var(--pct), rgba(16,36,26,.1) var(--pct)); }
+input[type=range]::-moz-range-track { height: 8px; border-radius: 8px; background: rgba(16,36,26,.1); }
+input[type=range]::-moz-range-progress { height: 8px; border-radius: 8px; background: var(--green); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; margin-top: -10px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px var(--green), 0 6px 14px rgba(11,122,67,.3); transition: transform .25s var(--ease-out); }
+input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px var(--green), 0 6px 14px rgba(11,122,67,.3); }
+input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
+.grow-note { margin-top: 28px; font-size: .88rem; line-height: 1.6; color: var(--muted); max-width: 440px; }
+.chart { position: relative; background: #fff; border-radius: 32px; padding: clamp(28px, 4vw, 48px); }
+.chart-headline { font-family: var(--font-heading); font-size: clamp(1.35rem, 2.2vw, 1.9rem); font-weight: 600; line-height: 1.22; letter-spacing: -.03em; color: var(--ink); max-width: 26ch; }
+.chart-headline strong { color: var(--green); font-weight: 800; font-variant-numeric: tabular-nums; }
+.legend { margin-top: 18px; display: flex; gap: 22px; flex-wrap: wrap; font-size: .92rem; color: var(--text); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend i { width: 12px; height: 12px; border-radius: 4px; }
+.sw-in { background: var(--green); }
+.sw-int { background: var(--gold); }
+.cols { margin-top: 28px; height: clamp(280px, 32vw, 380px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 3vw, 36px); align-items: end; }
+.col { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; cursor: default; transition: opacity .3s; }
+.cols:hover .col:not(:hover) { opacity: .45; }
+.col-val { font-family: var(--font-heading); font-size: clamp(1.15rem, 2vw, 1.6rem); font-weight: 700; letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums; margin-bottom: 10px; }
+.col-bar { width: min(120px, 78%); display: flex; flex-direction: column; gap: 2px; }
+.col-bar .seg { width: 100%; height: 0; display: block; }
+.col-bar .seg-int { background: var(--gold); border-radius: 10px 10px 0 0; }
+.col-bar .seg-in { background: var(--green); border-radius: 0 0 4px 4px; }
+.col-name { margin-top: 14px; text-align: center; font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; letter-spacing: -.02em; color: var(--ink); }
+.col-name small { display: block; font-family: var(--font); font-weight: 500; font-size: .85rem; letter-spacing: 0; color: var(--muted); }
+.tip { position: absolute; z-index: 5; pointer-events: none; min-width: 200px; background: var(--forest); color: #fff; padding: 14px 16px; font-size: .88rem; line-height: 1.6; border-radius: 14px; box-shadow: 0 16px 34px rgba(0,0,0,.2); opacity: 0; transform: translateY(6px); transition: opacity .18s, transform .18s; }
+.tip.on { opacity: 1; transform: translateY(0); }
+.tip b { font-family: var(--font-heading); font-size: 1rem; }
+.tip i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 7px; }
+@media (max-width: 960px) { .grow-inner { grid-template-columns: 1fr; } }
+
+/* ───────── Questions ───────── */
+.questions { background: var(--forest); color: #fff; position: relative; overflow: hidden; }
+.questions-head { padding-top: clamp(96px, 12vw, 160px); max-width: 820px; }
+.questions-head .kicker { color: var(--leaf); }
+.questions-head .h2 { color: #fff; margin-top: 0; }
+.questions-head .h2 em { color: var(--gold-soft); }
+.questions-head .lede { color: rgba(255,255,255,.75); margin-top: 22px; }
+.marquee { margin-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(96px, 12vw, 160px); display: flex; flex-direction: column; gap: 26px; }
+.track { display: flex; gap: 22px; width: max-content; padding: 8px 0 22px; }
+.bubble {
+  --b: #fff; --t: var(--ink);
+  position: relative; flex: none; max-width: 420px;
+  padding: 22px 26px; border-radius: 26px; background: var(--b); color: var(--t);
+  font-family: var(--font-heading); font-size: clamp(1.1rem, 1.6vw, 1.35rem); font-weight: 600; line-height: 1.25; letter-spacing: -.02em;
+  transition: transform .4s var(--ease-out);
+}
+.bubble::after { content: ''; position: absolute; left: 30px; bottom: -12px; width: 26px; height: 22px; background: var(--b); clip-path: polygon(0 0, 100% 0, 10% 100%); }
+.row:nth-child(2) .bubble::after { left: auto; right: 30px; clip-path: polygon(0 0, 100% 0, 90% 100%); }
+.bubble:hover { transform: translateY(-6px) rotate(-1deg); }
+.bubble.v2 { --b: var(--mint-2); }
+.bubble.v3 { --b: var(--gold-soft); }
+.bubble.v4 { --b: var(--leaf); --t: #06281a; }
+.bubble .sw { display: inline-flex; gap: 5px; margin-left: 10px; vertical-align: 1px; }
+.bubble .sw i { width: 16px; height: 16px; border-radius: 5px; display: inline-block; }
+.no-marquee .track { flex-wrap: wrap; width: auto; padding: 0 var(--gutter) 22px; }
+.no-marquee .bubble.dup { display: none; }
+
+/* ───────── Details ───────── */
+.details { background: var(--paper); }
+.details-inner { padding-top: clamp(96px, 12vw, 170px); padding-bottom: clamp(48px, 6vw, 80px); display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.details-inner .h2 { margin-top: 0; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(36px, 5vw, 64px) clamp(28px, 4vw, 56px); }
+.fact span { display: block; font-size: 1rem; font-weight: 600; color: var(--green); }
+.fact strong { display: block; margin-top: 10px; font-family: var(--font-heading); font-size: clamp(1.45rem, 2.4vw, 2.1rem); font-weight: 700; line-height: 1.12; letter-spacing: -.035em; color: var(--ink); }
+.fact p { margin-top: 10px; font-size: 1rem; line-height: 1.6; color: var(--muted); }
+@media (max-width: 900px) { .details-inner { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } }
+
+/* ───────── Contact / closing ───────── */
+.closing { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--paper) 0%, #eef4ea 45%, #f7f1dd 100%); }
+.closing-inner { position: relative; z-index: 2; padding-top: clamp(96px, 12vw, 160px); padding-bottom: clamp(260px, 36vh, 380px); text-align: center; display: flex; flex-direction: column; align-items: center; }
+.closing .h2 { font-size: clamp(2.8rem, 7.4vw, 6.6rem); max-width: 12ch; margin-top: 0; }
+.closing .lede { margin-top: 24px; text-align: center; }
+.closing-actions { margin-top: 34px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.meadow-close { position: absolute; left: 0; right: 0; bottom: 0; height: clamp(230px, 34vh, 360px); width: 100%; z-index: 1; pointer-events: none; }
+
+/* ───────── Footer ───────── */
+.footer { background: var(--forest); color: rgba(255,255,255,.66); position: relative; z-index: 2; margin-top: -1px; }
+.footer-inner { padding-top: 40px; padding-bottom: 40px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+.footer-brand { font-family: var(--font-heading); font-weight: 800; font-size: 1.4rem; letter-spacing: -.035em; color: #fff; }
+.footer-brand i { font-style: normal; font-weight: 500; color: var(--leaf); }
+.footer-brand small { font-family: var(--font); font-weight: 500; font-size: .92rem; letter-spacing: 0; color: rgba(255,255,255,.62); margin-left: 10px; }
+.footer-logos { display: flex; align-items: center; gap: 22px; }
+.footer-logos img { height: 34px; width: auto; opacity: .85; transition: opacity .2s; }
+.footer-logos a:first-child img { height: 44px; }
+.footer-logos img:hover { opacity: 1; }
+.footer-meta { display: flex; gap: 18px; flex-wrap: wrap; font-size: .86rem; }
+.footer-brand small a { text-decoration: underline; text-underline-offset: .2em; text-decoration-color: rgba(255,255,255,.35); }
+.footer-brand small a:hover { color: #fff; text-decoration-color: #fff; }
+.footer-meta a:hover { color: #fff; text-decoration: underline; text-underline-offset: .25em; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<nav class="pill-nav" id="pillNav" aria-label="Main">
+  <a class="pn-brand" href="#top">Here <i>and</i> Now</a>
+  <div class="pn-links" id="pnLinks">
+    <span class="pn-ind" id="pnInd" aria-hidden="true"></span>
+    <a href="#program" data-sec="program">About</a>
+    <a href="#pillars" data-sec="pillars">Curriculum</a>
+    <a class="opt" href="#grow" data-sec="grow">Saving</a>
+  </div>
+  <a class="pn-cta" href="#contact">Contact</a>
+</nav>
+
+<!-- ═════════ HERO ═════════ -->
+<header class="hero" id="top">
+  <div class="sun" aria-hidden="true"></div>
+  <div class="cloud c1" aria-hidden="true"></div>
+  <div class="cloud c2" aria-hidden="true"></div>
+  <div class="cloud c3" aria-hidden="true"></div>
+  <canvas class="meadow meadow-back" id="meadowBack" aria-hidden="true"></canvas>
+
+  <div class="hero-copy">
+    <div class="wrap hero-grid">
+      <div class="hero-main">
+      <p class="hero-lede hero-in">Saving, budgeting, first impressions and smart choices. The habits that make independence easier, <span>learned early.</span></p>
+      <div class="hero-actions hero-in">
+        <a class="btn btn-green" href="#program">Explore the program <span class="arr">→</span></a>
+        <a class="btn btn-line" href="#contact">Get in touch</a>
+      </div>
+      </div>
+      <div class="hero-info hero-in">
+        <p class="hi-date">June 29 to July 1, 2027</p>
+        <p class="hi-line">For students in Grades 7–8</p>
+        <p class="hi-line">8:00 AM to 3:00 PM each day</p>
+        <p class="hi-line">Hosted by <a href="https://www.stgeorges.bc.ca">St. George's School</a></p>
+        <p class="hi-line">$799 + GST, plus $25 to apply</p>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="hero-title">
+    <span class="sr-only">Here and Now</span>
+    <span class="t"><a class="by" href="https://www.venturelift.org">by VentureLift</a><span aria-hidden="true"><span class="ch">H</span><span class="ch">e</span><span class="ch">r</span><span class="ch">e</span><span class="sp"></span><span class="ch and">a</span><span class="ch and">n</span><span class="ch and">d</span><br class="m-br"/><span class="sp sp2"></span><span class="ch">N</span><span class="ch">o</span><span class="ch">w</span></span></span>
+  </h1>
+
+  <canvas class="meadow meadow-front" id="meadowFront" aria-hidden="true"></canvas>
+  <a class="scroll-cue" href="#program" aria-label="Scroll to the program">Scroll<i></i></a>
+</header>
+
+<main>
+<!-- ═════════ INTRO ═════════ -->
+<section class="intro" id="program" data-nav="dark" aria-label="About Here and Now">
+  <div class="wrap intro-inner">
+    <p class="statement" id="statement">Money habits, people skills and good judgment don't have to wait. <span class="hl">Here and Now</span> gives students a head start on all three, <span class="hl-g">right now.</span></p>
+    <p class="intro-sub" data-reveal>Here and Now: A Financial Start introduces 7th and 8th grade students to the fundamentals of personal finance while building the interpersonal habits and decision-making skills needed for early independence. Students learn how to make their money work for them, how to present themselves with confidence and how to navigate their social world with good sense.</p>
+  </div>
+</section>
+
+<!-- ═════════ PILLARS ═════════ -->
+<section class="pillars" id="pillars" aria-labelledby="pillarsTitle">
+  <div class="wrap">
+    <div class="pillars-head">
+      <h2 class="h2" id="pillarsTitle" data-split>Four things worth learning <em>early.</em></h2>
+      <p class="lede" data-reveal>Every part of the program pairs a real skill with a real situation, so it sticks long after the last session.</p>
+    </div>
+
+    <div class="story" id="story">
+      <div class="stage" id="stage" aria-hidden="true"><div class="stage-bg" id="stageBg"></div></div>
+      <div class="steps">
+
+        <article class="step" data-i="0" data-anim="jar" data-bg="#e4f1e8">
+          <div class="fig">
+            <svg class="ill" viewBox="0 0 320 260" role="img" aria-label="A savings jar filling with coins as a sprout grows from the top">
+              <ellipse class="shadow" cx="160" cy="240" rx="86" ry="8"/>
+              <path class="glass" d="M112 96 C 104 104 96 112 96 132 L96 214 C 96 228 106 236 120 236 L200 236 C 214 236 224 228 224 214 L224 132 C 224 112 216 104 208 96 Z"/>
+              <g class="jar-coins">
+                <g class="jc"><circle class="f-gold" cx="134" cy="216" r="15"/><circle cx="134" cy="216" r="10" fill="none" stroke="#fff3c4" stroke-width="2"/><circle class="ln-thin" cx="134" cy="216" r="15"/></g>
+                <g class="jc"><circle class="f-gold" cx="163" cy="219" r="15"/><circle cx="163" cy="219" r="10" fill="none" stroke="#fff3c4" stroke-width="2"/><circle class="ln-thin" cx="163" cy="219" r="15"/></g>
+                <g class="jc"><circle class="f-gold" cx="192" cy="216" r="15"/><circle cx="192" cy="216" r="10" fill="none" stroke="#fff3c4" stroke-width="2"/><circle class="ln-thin" cx="192" cy="216" r="15"/></g>
+                <g class="jc"><circle class="f-gold" cx="148" cy="190" r="15"/><circle cx="148" cy="190" r="10" fill="none" stroke="#fff3c4" stroke-width="2"/><circle class="ln-thin" cx="148" cy="190" r="15"/></g>
+                <g class="jc"><circle class="f-gold" cx="178" cy="191" r="15"/><circle cx="178" cy="191" r="10" fill="none" stroke="#fff3c4" stroke-width="2"/><circle class="ln-thin" cx="178" cy="191" r="15"/></g>
+                <g class="jc"><circle class="f-gold" cx="163" cy="165" r="15"/><circle cx="163" cy="165" r="10" fill="none" stroke="#fff3c4" stroke-width="2"/><circle class="ln-thin" cx="163" cy="165" r="15"/></g>
+              </g>
+              <path class="ln" d="M112 96 C 104 104 96 112 96 132 L96 214 C 96 228 106 236 120 236 L200 236 C 214 236 224 228 224 214 L224 132 C 224 112 216 104 208 96"/>
+              <rect class="f-green" x="104" y="82" width="112" height="16" rx="3"/>
+              <rect class="ln" x="104" y="82" width="112" height="16" rx="3"/>
+              <path d="M110 120 L110 160" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+              <g class="jar-label"><rect x="118" y="118" width="84" height="26" rx="4" fill="#fff" stroke="#17271f" stroke-width="2.2"/><text x="160" y="137" text-anchor="middle" font-size="15" fill="#0b7a43">Savings</text></g>
+              <g class="jar-sprout">
+                <path class="ln" d="M160 82 C 160 60 156 48 162 30"/>
+                <g class="js-leaf" style="transform-origin:160px 62px"><path class="f-leaf" d="M160 62 C 146 44 124 44 114 52 C 128 70 148 72 160 62 Z"/><path class="ln-thin" d="M160 62 C 146 44 124 44 114 52 C 128 70 148 72 160 62 Z"/></g>
+                <g class="js-leaf" style="transform-origin:161px 46px"><path class="f-green" d="M161 46 C 172 24 196 20 210 28 C 198 50 176 54 161 46 Z"/><path class="ln-thin" d="M161 46 C 172 24 196 20 210 28 C 198 50 176 54 161 46 Z"/></g>
+              </g>
+              <g class="jar-tag"><text x="238" y="64" font-size="20" fill="#0b7a43">+ interest</text></g>
+              <g class="drop-coin"><circle class="f-gold" cx="160" cy="-30" r="15"/><circle cx="160" cy="-30" r="10" fill="none" stroke="#fff3c4" stroke-width="2"/><circle class="ln-thin" cx="160" cy="-30" r="15"/></g>
+            </svg>
+          </div>
+          <h3>Smart money <em>management</em></h3>
+          <p>The basics, before any big commitments: opening a savings account, building a personal budget, saving consistently, understanding interest rates and knowing what to expect from a first paycheque. Let's start early by forming smart habits today.</p>
+          <ul class="learn">
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Savings accounts</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Budgeting</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Interest rates</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Your first paycheque</li>
+          </ul>
+        </article>
+
+        <article class="step" data-i="1" data-anim="network" data-bg="#f4ecd3">
+          <div class="fig">
+            <svg class="ill" viewBox="0 0 320 260" role="img" aria-label="A network of people connecting around a student who says hello">
+              <g class="net-lines">
+                <path class="ln-thin" d="M160 132 L70 70"/><path class="ln-thin" d="M160 132 L254 64"/><path class="ln-thin" d="M160 132 L58 200"/>
+                <path class="ln-thin" d="M160 132 L262 196"/><path class="ln-thin" d="M160 132 L160 34"/><path class="ln-thin" d="M70 70 L160 34"/>
+                <path class="ln-thin" d="M254 64 L160 34"/><path class="ln-thin" d="M58 200 L150 238"/><path class="ln-thin" d="M262 196 L150 238"/>
+              </g>
+              <g class="net-node" style="transform-origin:70px 70px"><circle class="f-gold-soft" cx="70" cy="70" r="22"/><circle class="ln" cx="70" cy="70" r="22"/><circle class="f-ink" cx="70" cy="64" r="6"/><path class="f-ink" d="M58 82 a12 10 0 0 1 24 0 Z"/></g>
+              <g class="net-node" style="transform-origin:254px 64px"><circle class="f-white" cx="254" cy="64" r="20"/><circle class="ln" cx="254" cy="64" r="20"/><circle class="f-ink" cx="254" cy="59" r="5.5"/><path class="f-ink" d="M243 75 a11 9 0 0 1 22 0 Z"/></g>
+              <g class="net-node" style="transform-origin:160px 34px"><circle class="f-mint" cx="160" cy="34" r="18"/><circle class="ln" cx="160" cy="34" r="18"/><circle class="f-ink" cx="160" cy="29" r="5"/><path class="f-ink" d="M150 44 a10 8 0 0 1 20 0 Z"/></g>
+              <g class="net-node" style="transform-origin:58px 200px"><circle class="f-white" cx="58" cy="200" r="20"/><circle class="ln" cx="58" cy="200" r="20"/><circle class="f-ink" cx="58" cy="195" r="5.5"/><path class="f-ink" d="M47 211 a11 9 0 0 1 22 0 Z"/></g>
+              <g class="net-node" style="transform-origin:262px 196px"><circle class="f-gold-soft" cx="262" cy="196" r="22"/><circle class="ln" cx="262" cy="196" r="22"/><circle class="f-ink" cx="262" cy="190" r="6"/><path class="f-ink" d="M250 208 a12 10 0 0 1 24 0 Z"/></g>
+              <g class="net-node" style="transform-origin:150px 238px"><circle class="f-mint" cx="150" cy="238" r="16"/><circle class="ln" cx="150" cy="238" r="16"/><circle class="f-ink" cx="150" cy="234" r="4.5"/><path class="f-ink" d="M141 247 a9 7 0 0 1 18 0 Z"/></g>
+              <g class="net-center" style="transform-origin:160px 132px"><circle class="f-green" cx="160" cy="132" r="34"/><circle class="ln" cx="160" cy="132" r="34"/><circle class="f-white" cx="160" cy="123" r="9"/><path class="f-white" d="M142 152 a18 15 0 0 1 36 0 Z"/></g>
+              <g class="net-wave" style="transform-origin:200px 98px"><path class="f-white" d="M188 82 h52 a6 6 0 0 1 6 6 v18 a6 6 0 0 1 -6 6 h-38 l-10 9 v-9 h-4 a6 6 0 0 1 -6 -6 v-18 a6 6 0 0 1 6 -6 z"/><path class="ln-thin" d="M188 82 h52 a6 6 0 0 1 6 6 v18 a6 6 0 0 1 -6 6 h-38 l-10 9 v-9 h-4 a6 6 0 0 1 -6 -6 v-18 a6 6 0 0 1 6 -6 z"/><text x="213" y="102" text-anchor="middle" font-size="14" fill="#0b7a43">Hello!</text></g>
+            </svg>
+          </div>
+          <h3>Networking and business <em>etiquette</em></h3>
+          <p>How to build a network early, make a strong first impression and keep connections for the long run. Students practise active listening, following up with new acquaintances, paying attention to presentation and handling professional settings like a business lunch, plus the key business rules to know.</p>
+          <ul class="learn">
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>First impressions</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Active listening</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Following up</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Business lunch manners</li>
+          </ul>
+        </article>
+
+        <article class="step" data-i="2" data-anim="talk" data-bg="#e3edf3">
+          <div class="fig">
+            <svg class="ill" viewBox="0 0 320 260" role="img" aria-label="Two speech bubbles in a calm, friendly conversation">
+              <g class="bub bub-a" style="transform-origin:52px 128px">
+                <path class="f-green" d="M40 36 h158 a14 14 0 0 1 14 14 v56 a14 14 0 0 1 -14 14 h-118 l-26 22 v-22 h-14 a14 14 0 0 1 -14 -14 v-56 a14 14 0 0 1 14 -14 z"/>
+                <path class="ln" d="M40 36 h158 a14 14 0 0 1 14 14 v56 a14 14 0 0 1 -14 14 h-118 l-26 22 v-22 h-14 a14 14 0 0 1 -14 -14 v-56 a14 14 0 0 1 14 -14 z"/>
+                <path class="bl" d="M52 62 H180" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+                <path class="bl" d="M52 82 H160" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+                <path class="bl" d="M52 102 H118" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".6"/>
+              </g>
+              <g class="bub bub-b" style="transform-origin:270px 222px">
+                <path class="f-white" d="M128 138 h150 a14 14 0 0 1 14 14 v44 a14 14 0 0 1 -14 14 h-8 v22 l-26 -22 h-116 a14 14 0 0 1 -14 -14 v-44 a14 14 0 0 1 14 -14 z"/>
+                <path class="ln" d="M128 138 h150 a14 14 0 0 1 14 14 v44 a14 14 0 0 1 -14 14 h-8 v22 l-26 -22 h-116 a14 14 0 0 1 -14 -14 v-44 a14 14 0 0 1 14 -14 z"/>
+                <path class="bl" d="M134 164 H264" stroke="#17271f" stroke-width="7" stroke-linecap="round" opacity=".85"/>
+                <path class="bl" d="M134 184 H226" stroke="#17271f" stroke-width="7" stroke-linecap="round" opacity=".5"/>
+              </g>
+              <g class="bub-dots" style="transform-origin:72px 196px">
+                <rect class="f-gold-soft" x="40" y="180" width="64" height="32" rx="16"/>
+                <rect class="ln-thin" x="40" y="180" width="64" height="32" rx="16"/>
+                <circle class="dot f-ink" cx="58" cy="196" r="4"/><circle class="dot f-ink" cx="72" cy="196" r="4"/><circle class="dot f-ink" cx="86" cy="196" r="4"/>
+              </g>
+              <g class="bub-heart" style="transform-origin:246px 112px"><path class="f-gold" d="M246 124 C 226 110 226 94 236 92 C 242 91 246 96 246 100 C 246 96 250 91 256 92 C 266 94 266 110 246 124 Z"/><path class="ln-thin" d="M246 124 C 226 110 226 94 236 92 C 242 91 246 96 246 100 C 246 96 250 91 256 92 C 266 94 266 110 246 124 Z"/></g>
+            </svg>
+          </div>
+          <h3>Respectful communication and <em>relationships</em></h3>
+          <p>Guidance for navigating peer dynamics, understanding personal boundaries and setting healthy expectations in professional relationships, along with how to communicate clearly and respectfully with adults and peers alike.</p>
+          <ul class="learn">
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Personal boundaries</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Healthy expectations</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Resolving conflict</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Speaking up clearly</li>
+          </ul>
+        </article>
+
+        <article class="step" data-i="3" data-anim="path" data-bg="#efe9df">
+          <div class="fig">
+            <svg class="ill" viewBox="0 0 320 260" role="img" aria-label="A path splits in two; a traveller pauses, then chooses the safe way toward a flag">
+              <path d="M160 262 L160 160 C 160 120 110 100 76 60" fill="none" stroke="#d9d2c4" stroke-width="30" stroke-linecap="round"/>
+              <path d="M160 160 C 160 120 210 100 244 60" fill="none" stroke="#cfe7d7" stroke-width="30" stroke-linecap="round"/>
+              <path class="road-dash" d="M160 258 L160 160 C 160 120 210 100 244 60" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 12"/>
+              <g class="sign-warn" style="transform-origin:62px 70px">
+                <path class="ln" d="M62 96 L62 70"/>
+                <path class="f-gold" d="M62 26 L88 70 L36 70 Z"/><path class="ln" d="M62 26 L88 70 L36 70 Z"/>
+                <path d="M62 42 L62 56" stroke="#17271f" stroke-width="4" stroke-linecap="round"/><circle class="f-ink" cx="62" cy="63" r="2.6"/>
+              </g>
+              <g class="flag" style="transform-origin:252px 70px">
+                <path class="ln" d="M252 74 L252 16"/>
+                <path class="flag-cloth f-green" d="M252 18 C 268 12 280 26 296 20 L296 46 C 280 52 268 38 252 44 Z"/>
+                <path class="ln-thin" d="M252 18 C 268 12 280 26 296 20 L296 46 C 280 52 268 38 252 44 Z"/>
+                <path d="M266 30 l5 5 l10 -10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <g class="think" style="transform-origin:120px 150px">
+                <circle class="f-white" cx="112" cy="140" r="17"/><circle class="ln-thin" cx="112" cy="140" r="17"/>
+                <text x="112" y="147" text-anchor="middle" font-size="20" fill="#17271f">?</text>
+                <circle class="f-white" cx="132" cy="160" r="4"/><circle class="ln-thin" cx="132" cy="160" r="4"/>
+              </g>
+              <path class="travel-path" d="M160 246 L160 160 C 160 120 210 100 238 66" fill="none" stroke="none"/>
+              <g class="traveler"><circle cx="0" cy="0" r="13" fill="#fff"/><circle cx="0" cy="0" r="9" class="f-green"/><circle cx="0" cy="0" r="13" class="ln-thin"/></g>
+            </svg>
+          </div>
+          <h3>Making safer <em>choices</em></h3>
+          <p>Decision-making away from home. Students learn practical strategies for handling peer pressure, social gatherings and risky situations, using sound judgment and growing independence.</p>
+          <ul class="learn">
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Peer pressure</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Social gatherings</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Risky situations</li>
+            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Sound judgment</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ GROW ═════════ -->
+<section class="grow" id="grow" aria-labelledby="growTitle">
+  <div class="wrap grow-inner">
+    <div class="grow-copy">
+      <h2 class="h2" id="growTitle" data-split>Start now and let time do the <em>heavy lifting.</em></h2>
+      <p class="lede" data-reveal>Interest pays you for saving, and then it pays you on what it already paid. The earlier you start, the longer it has to grow.</p>
+      <div class="controls" data-reveal>
+        <div class="control">
+          <label for="amount">Saved every month <output id="amountOut" for="amount">$25</output></label>
+          <input id="amount" type="range" min="5" max="100" step="5" value="25"/>
+        </div>
+        <div class="control">
+          <label for="rate">Interest per year <output id="rateOut" for="rate">4%</output></label>
+          <input id="rate" type="range" min="1" max="8" step="0.5" value="4"/>
+        </div>
+      </div>
+    </div>
+    <div class="chart" id="chart" data-reveal>
+      <p class="chart-headline" aria-live="polite">Starting at 13 instead of 25 could mean <strong id="diffOut">$5,630</strong> more by age 30.</p>
+      <div class="legend" aria-hidden="true"><span><i class="sw-in"></i>What you put in</span><span><i class="sw-int"></i>Interest earned</span></div>
+      <div class="cols" id="cols" aria-hidden="true">
+        <div class="col" data-age="13"><span class="col-val">$0</span><div class="col-bar"><span class="seg seg-int"></span><span class="seg seg-in"></span></div><p class="col-name">Start at 13<small>17 years</small></p></div>
+        <div class="col" data-age="18"><span class="col-val">$0</span><div class="col-bar"><span class="seg seg-int"></span><span class="seg seg-in"></span></div><p class="col-name">Start at 18<small>12 years</small></p></div>
+        <div class="col" data-age="25"><span class="col-val">$0</span><div class="col-bar"><span class="seg seg-int"></span><span class="seg seg-in"></span></div><p class="col-name">Start at 25<small>5 years</small></p></div>
+      </div>
+      <div class="tip" id="tip" role="presentation"></div>
+      <table class="sr-only" id="growTable"><caption>Balance at age 30 by starting age</caption><thead><tr><th>Starting age</th><th>Put in</th><th>Interest</th><th>Total</th></tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ QUESTIONS ═════════ -->
+<section class="questions" id="questions" data-nav="dark" aria-labelledby="qTitle">
+  <div class="wrap questions-head">
+    <h2 class="h2" id="qTitle" data-split>The questions nobody explains, <em>answered.</em></h2>
+    <p class="lede" data-reveal>From a first savings account to the right shoes for a business lunch, these are the questions students leave able to answer.</p>
+  </div>
+  <ul class="sr-only" id="qList"></ul>
+  <div class="marquee" id="marquee" aria-hidden="true">
+    <div class="row"><div class="track"></div></div>
+    <div class="row"><div class="track"></div></div>
+  </div>
+</section>
+
+
+<!-- ═════════ CLOSING / CONTACT ═════════ -->
+<section class="closing" id="contact" aria-labelledby="closeTitle">
+  <div class="wrap closing-inner">
+    <h2 class="h2" id="closeTitle" data-split>The best time to start is <em>now.</em></h2>
+    <p class="lede" data-reveal>Applications open soon. Have a question in the meantime? The program team would love to hear from you.</p>
+    <div class="closing-actions" data-reveal>
+      <a class="btn btn-green" href="mailto:info@venturelift.org?subject=Here%20%26%20Now%20enquiry">Email info@venturelift.org <span class="arr">→</span></a>
+    </div>
+  </div>
+  <canvas class="meadow-close" id="meadowClose" aria-hidden="true"></canvas>
+</section>
+</main>
+
+<footer class="footer" data-nav="dark">
+  <div class="wrap footer-inner">
+    <p class="footer-brand">Here <i>and</i> Now<small>by <a href="https://www.venturelift.org">VentureLift</a></small></p>
+    <div class="footer-logos">
+      <a href="https://www.venturelift.org"><img alt="VentureLift" src="venture.png"/></a>
+      <a href="https://www.stgeorges.bc.ca"><img alt="St. George's School" src="saint.png"/></a>
+    </div>
+    <div class="footer-meta">
+      <span>© 2025–2026 St. George's School</span>
+      <span>Designed by Evan Borodow '29</span>
+      <a href="https://static1.squarespace.com/static/690ce620a851f31c1c67d887/t/691b795b3409972cbc5443fd/1763408219638/PRIVACY+POLICY.pdf">Legal</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════
+   SETUP
+═══════════════════════════════════════════ */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasGsap = !!(window.gsap && window.ScrollTrigger);
+const hasMotion = hasGsap && !reduceMotion;
+if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+const finePointer = window.matchMedia('(pointer: fine)').matches;
+function seeded(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+
+/* ═══════════════════════════════════════════
+   MEADOW: procedural grass that grows, sways
+   in a travelling breeze and parts for the cursor
+═══════════════════════════════════════════ */
+function angDiff(a, b) { let d = (b - a) % (Math.PI * 2); if (d > Math.PI) d -= Math.PI * 2; if (d < -Math.PI) d += Math.PI * 2; return d; }
+class Meadow {
+  constructor(canvas, opts) {
+    this.c = canvas; this.ctx = canvas.getContext('2d'); this.o = opts;
+    this.pointer = { x: -9999, y: -9999 };
+    this.t0 = null; this.raf = 0; this.visible = true; this.started = false;
+    this.resize();
+    let rT; new ResizeObserver(() => { clearTimeout(rT); rT = setTimeout(() => this.resize(), 60); }).observe(canvas);
+    new IntersectionObserver(([e]) => { this.visible = e.isIntersecting; if (this.visible && this.started && !reduceMotion) this.loop(); }).observe(canvas);
+  }
+  resize() {
+    const w = this.c.clientWidth, h = this.c.clientHeight;
+    if (!w || !h) return;
+    const sameWidth = this.w === w && this.groups;
+    this.w = w; this.h = h; this.setSize();
+    if (!sameWidth) this.build();
+    if (!this.started || reduceMotion) this.draw(this.now());
+  }
+  setSize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.c.width = Math.round(this.w * dpr); this.c.height = Math.round(this.h * dpr);
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  now() { return this.t0 === null ? (reduceMotion ? 1e7 : 0) : performance.now() - this.t0; }
+  build() {
+    const r = seeded(this.o.seed || 3), { w, h } = this, cx = w / 2, ref = Math.min(h, 1000);
+    this.groups = [];
+    this.o.layers.forEach(L => {
+      const buckets = L.colors.map(c => ({ color: c, blades: [] }));
+      const n = Math.round(w / L.spacing);
+      for (let i = 0; i < n; i++) {
+        const x = (i + r()) / n * (w + 40) - 20;
+        buckets[Math.floor(r() * buckets.length)].blades.push({
+          x, h: (L.hMin + Math.pow(r(), 1.6) * (L.hMax - L.hMin)) * ref, w: L.wMin + r() * (L.wMax - L.wMin),
+          lean: (r() - .5) * .28, phase: r() * Math.PI * 2, flex: .7 + r() * .6, bend: 0,
+          delay: (L.delay || 0) + Math.abs(x - cx) / (w / 2) * .55 + r() * .45, dur: 1.2 + r() * .7,
+        });
+      }
+      this.groups.push(...buckets);
+    });
+    this.flowers = [];
+    const nf = this.o.flowers ? Math.max(3, Math.round(w / 210)) : 0;
+    for (let i = 0; i < nf; i++) {
+      const x = (i + .15 + r() * .7) / nf * w;
+      this.flowers.push({
+        x, h: (this.o.flowerH[0] + r() * (this.o.flowerH[1] - this.o.flowerH[0])) * ref,
+        r: (8 + r() * 7) * Math.min(1.5, Math.max(.95, w / 1100)), petals: r() < .55 ? 5 : 6, rot: r() * 6.28, spin: 0,
+        phase: r() * 6.28, bend: 0, lean: (r() - .5) * .22,
+        leafT: .3 + r() * .25, leafSide: r() < .5 ? -1 : 1,
+        delay: .9 + x / w * .9 + r() * .3, dur: 1.7,
+      });
+    }
+    this.pollen = [];
+    if (this.o.pollen) for (let i = 0; i < 16; i++) this.pollen.push({ x: r() * w, y: r(), r: 1.4 + r() * 2.6, sp: .012 + r() * .02, ph: r() * 6.28, life: r() });
+    if (!Meadow.sprite) {
+      const sc = document.createElement('canvas'); sc.width = sc.height = 64;
+      const sx = sc.getContext('2d'), g = sx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      g.addColorStop(0, 'rgba(255,236,160,1)'); g.addColorStop(.25, 'rgba(246,206,82,.85)'); g.addColorStop(1, 'rgba(246,206,82,0)');
+      sx.fillStyle = g; sx.fillRect(0, 0, 64, 64); Meadow.sprite = sc;
+    }
+  }
+  play(delay = 0) {
+    if (this.started) return;
+    this.started = true;
+    if (reduceMotion) { this.t0 = performance.now() - 1e7; this.draw(1e7); return; }
+    this.t0 = performance.now() + delay * 1000;
+    this.loop();
+  }
+  loop() {
+    cancelAnimationFrame(this.raf);
+    const tick = () => { if (!this.visible) return; this.draw(this.now()); this.raf = requestAnimationFrame(tick); };
+    this.raf = requestAnimationFrame(tick);
+  }
+  static grow(p) { if (p <= 0) return 0; if (p >= 1) return 1; const c1 = 1.15, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); }
+  wind(t, x, ph) {
+    if (reduceMotion) return 0;
+    const s = t * .001;
+    const base = Math.sin(s * 1.3 + x * .006 + ph) * .07 + Math.sin(s * .55 + x * .0021) * .09;
+    const gx = ((t * .3) % (this.w + 1800)) - 900;
+    return base + .32 * Math.exp(-Math.pow((x - gx) / 260, 2));
+  }
+  push(x, tipY) {
+    const p = this.pointer, R = 120, dx = x - p.x;
+    if (Math.abs(dx) > R || p.y < tipY - 70) return 0;
+    return Math.sign(dx || 1) * Math.pow(1 - Math.abs(dx) / R, 1.5) * .85;
+  }
+  draw(t) {
+    const { ctx, w, h } = this;
+    if (!w) return;
+    ctx.clearRect(0, 0, w, h);
+    const base = h + 6, tsec = t / 1000, k = reduceMotion ? 1 : .09;
+    const dt = this.lastT === undefined ? 16 : Math.min(50, t - this.lastT); this.lastT = t;
+    const fadeIn = Math.max(0, Math.min(1, (tsec - 1.5) / 2.5));
+    for (const m of this.pollen) {
+      m.life = (m.life + dt * .00004 * (1 + m.sp * 20)) % 1;
+      const yy = h * (.92 - m.life * .75), xx = m.x + Math.sin(tsec * .5 + m.ph) * 26 + m.life * 40;
+      const a = fadeIn * Math.sin(m.life * Math.PI) * (.55 + .25 * Math.sin(tsec * 2 + m.ph));
+      const sz = m.r * 6;
+      ctx.globalAlpha = Math.max(0, a);
+      ctx.drawImage(Meadow.sprite, xx - sz / 2, yy - sz / 2, sz, sz);
+    }
+    ctx.globalAlpha = 1;
+    for (const g of this.groups) {
+      ctx.fillStyle = g.color; ctx.beginPath();
+      for (const b of g.blades) {
+        const gr = Meadow.grow((tsec - b.delay) / b.dur);
+        if (gr <= 0) continue;
+        const H = b.h * gr;
+        const target = b.lean + this.wind(t, b.x, b.phase) * b.flex + this.push(b.x, base - H);
+        b.bend += (target - b.bend) * k;
+        const a = Math.max(-1.15, Math.min(1.15, b.bend));
+        const tx = b.x + Math.sin(a) * H, ty = base - Math.cos(a) * H;
+        const qx = b.x + Math.sin(a * .45) * H * .5, qy = base - H * .58, hw = b.w / 2;
+        ctx.moveTo(b.x - hw, base);
+        ctx.quadraticCurveTo(qx - hw * .55, qy, tx, ty);
+        ctx.quadraticCurveTo(qx + hw * .55, qy, b.x + hw, base);
+      }
+      ctx.fill();
+    }
+    for (const f of this.flowers) {
+      const gr = Meadow.grow((tsec - f.delay) / f.dur);
+      if (gr <= 0) continue;
+      const H = f.h * gr;
+      const target = f.lean + this.wind(t, f.x, f.phase) * .55 + this.push(f.x, base - H) * .75;
+      f.bend += (target - f.bend) * (reduceMotion ? 1 : .06);
+      const tx = f.x + Math.sin(f.bend) * H, ty = base - Math.cos(f.bend) * H;
+      const qx = f.x + Math.sin(f.bend * .4) * H * .5, qy = base - H * .55;
+      /* stem */
+      ctx.strokeStyle = '#3f9a5f'; ctx.lineWidth = 2.4; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(f.x, base); ctx.quadraticCurveTo(qx, qy, tx, ty); ctx.stroke();
+      /* leaf on the stem */
+      const lt = f.leafT, li = 1 - lt;
+      const lx = li * li * f.x + 2 * li * lt * qx + lt * lt * tx, ly = li * li * base + 2 * li * lt * qy + lt * lt * ty;
+      const ls = Math.max(0, Math.min(1, (gr - .35) / .45));
+      if (ls > 0) {
+        const L = f.r * 2.6 * Meadow.grow(ls), W = L * .32;
+        ctx.save(); ctx.translate(lx, ly); ctx.rotate(-Math.PI / 2 + f.leafSide * 1.05 + f.bend * .6);
+        ctx.fillStyle = '#4fae6c'; ctx.beginPath(); ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(L * .5, -W, L, 0); ctx.quadraticCurveTo(L * .5, W, 0, 0); ctx.fill(); ctx.restore();
+      }
+      /* bloom: a bud forms, then the petals unfold one by one */
+      const bp = Math.max(0, (tsec - f.delay - f.dur * .7) / 1.4);
+      if (bp <= 0) continue;
+      const near = Math.hypot(this.pointer.x - tx, this.pointer.y - ty) < 70;
+      f.spin += (near ? 3.2 : .22) * dt / 1000 * (reduceMotion ? 0 : 1);
+      const n = f.petals, R = f.r;
+      ctx.save(); ctx.translate(tx, ty);
+      const budA = -Math.PI / 2 + f.bend;
+      for (let i = 0; i < n; i++) {
+        const pi = Meadow.grow(Math.min(1, Math.max(0, (bp - .15 - i * .08) / .55)));
+        const bud = Math.min(1, bp / .2);
+        const finalA = f.rot + f.spin + i * (Math.PI * 2 / n);
+        const a = budA + (i - (n - 1) / 2) * .16 * (1 - pi) + angDiff(budA, finalA) * pi;
+        const len = R * (.5 * bud + .85 * pi), wid = R * (.32 + .26 * pi);
+        if (len <= .2) continue;
+        ctx.save(); ctx.rotate(a);
+        ctx.fillStyle = i % 2 ? '#f7d257' : '#f2c230';
+        ctx.beginPath(); ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(len * .35, -wid, len * .95, -wid * .8, len, 0);
+        ctx.bezierCurveTo(len * .95, wid * .8, len * .35, wid, 0, 0); ctx.fill();
+        ctx.strokeStyle = 'rgba(170,112,0,.35)'; ctx.lineWidth = .9; ctx.stroke();
+        ctx.restore();
+      }
+      const cs = Meadow.grow(Math.min(1, Math.max(0, (bp - .45) / .5)));
+      if (cs > 0) {
+        ctx.fillStyle = '#b8780a'; ctx.beginPath(); ctx.arc(0, 0, R * .36 * cs, 0, 6.283); ctx.fill();
+        ctx.fillStyle = 'rgba(255,238,180,.85)'; ctx.beginPath(); ctx.arc(-R * .1 * cs, -R * .1 * cs, R * .1 * cs, 0, 6.283); ctx.fill();
+      }
+      ctx.restore();
+    }
+    if (this.o.fade) {
+      const fh = this.o.fade, fg = ctx.createLinearGradient(0, h - fh, 0, h);
+      fg.addColorStop(0, 'rgba(12,42,28,0)'); fg.addColorStop(1, 'rgba(12,42,28,1)');
+      ctx.fillStyle = fg; ctx.fillRect(0, h - fh, w, fh);
+    }
+  }
+  track(el) {
+    if (!finePointer || reduceMotion) return;
+    el.addEventListener('pointermove', e => { const r = this.c.getBoundingClientRect(); this.pointer.x = e.clientX - r.left; this.pointer.y = e.clientY - r.top; });
+    el.addEventListener('pointerleave', () => { this.pointer.x = -9999; });
+  }
+}
+
+const hero = document.getElementById('top');
+const back = new Meadow(document.getElementById('meadowBack'), {
+  seed: 11, pollen: true, flowers: true, flowerH: [.28, .42],
+  layers: [
+    { spacing: 3.4, hMin: .16, hMax: .4, wMin: 3, wMax: 6, delay: 0, colors: ['#b3dbb9', '#a6d3ad', '#bfe0c2', '#9fcca6'] },
+    { spacing: 4.2, hMin: .12, hMax: .32, wMin: 4, wMax: 7, delay: .15, colors: ['#6cb87e', '#5eae72', '#79c189', '#64b277'] },
+  ],
+});
+const front = new Meadow(document.getElementById('meadowFront'), {
+  seed: 29, fade: 90,
+  layers: [{ spacing: 4.6, hMin: .07, hMax: .24, wMin: 5, wMax: 9, delay: .3, colors: ['#3a9a5a', '#2f8a4f', '#26794a', '#348f55', '#1f6b3c'] }],
+});
+back.track(hero); front.track(hero);
+back.play(.15); front.play(.15);
+
+const closeField = new Meadow(document.getElementById('meadowClose'), {
+  seed: 47, flowers: true, flowerH: [.6, .85], fade: 50,
+  layers: [
+    { spacing: 4, hMin: .3, hMax: .75, wMin: 3, wMax: 6, delay: 0, colors: ['#a6d3ad', '#b3dbb9', '#98c9a1'] },
+    { spacing: 4.6, hMin: .22, hMax: .55, wMin: 5, wMax: 9, delay: .2, colors: ['#3a9a5a', '#2f8a4f', '#26794a', '#348f55'] },
+  ],
+});
+closeField.track(document.getElementById('contact'));
+if (hasMotion) ScrollTrigger.create({ trigger: '#contact', start: 'top 70%', once: true, onEnter: () => closeField.play() });
+else closeField.play();
+
+/* ═══════════════════════════════════════════
+   HERO ENTRANCE
+═══════════════════════════════════════════ */
+if (hasMotion) {
+  gsap.timeline({ defaults: { ease: 'power3.out' } })
+    .from('.sun', { opacity: 0, scale: .8, duration: 2.4, ease: 'power2.out' }, 0)
+    .from('.hero-title .ch', { yPercent: 70, opacity: 0, duration: 1.4, stagger: .06, ease: 'expo.out' }, .55)
+        .from('.hero-title .by', { opacity: 0, y: 12, duration: 1 }, 1.4)
+    .from('.hero-in', { opacity: 0, y: 22, duration: 1, stagger: .12 }, 1.2)
+    .from('#pillNav', { opacity: 0, y: -24, duration: 1, ease: 'expo.out' }, 1.5)
+    .from('.scroll-cue', { opacity: 0, duration: 1 }, 2.2);
+
+  gsap.to('.hero-title', { yPercent: -18, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero-copy', { y: -80, opacity: 0, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: '70% top', scrub: true } });
+  gsap.to('.sun', { y: 120, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+}
+
+/* ═══════════════════════════════════════════
+   GLASS NAV: sliding indicator + dark mode
+═══════════════════════════════════════════ */
+(function nav() {
+  const navEl = document.getElementById('pillNav');
+  const ind = document.getElementById('pnInd');
+  const links = Array.from(document.querySelectorAll('.pn-links a'));
+  let current;
+  function moveTo(link) {
+    links.forEach(l => l.classList.toggle('on', l === link));
+    if (!link || link.offsetWidth === 0) { ind.style.opacity = 0; current = link; return; }
+    const props = { x: link.offsetLeft, width: link.offsetWidth, opacity: 1 };
+    if (hasMotion) gsap.to(ind, { ...props, duration: current ? .55 : 0, ease: 'expo.out' });
+    else { ind.style.transform = `translateX(${props.x}px)`; ind.style.width = props.width + 'px'; ind.style.opacity = 1; }
+    current = link;
+  }
+  const spans = { program: ['program', 'program'], pillars: ['pillars', 'pillars'], grow: ['grow', 'grow'] };
+  const darkEls = Array.from(document.querySelectorAll('[data-nav="dark"]'));
+  function onScroll() {
+    const probe = 40;
+    navEl.classList.toggle('dark', darkEls.some(el => { const r = el.getBoundingClientRect(); return r.top <= probe && r.bottom >= probe; }));
+    const mid = window.innerHeight * .45;
+    let active = null;
+    for (const id in spans) {
+      const top = document.getElementById(spans[id][0]).getBoundingClientRect().top;
+      const bottom = document.getElementById(spans[id][1]).getBoundingClientRect().bottom;
+      if (top <= mid && bottom >= mid) active = id;
+    }
+    const link = active ? links.find(l => l.dataset.sec === active) : null;
+    if (link !== current) moveTo(link);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => { current = undefined; onScroll(); });
+  onScroll();
+})();
+
+/* ═══════════════════════════════════════════
+   TEXT REVEALS
+═══════════════════════════════════════════ */
+function splitLines(el) {
+  const tmp = document.createElement('div'); tmp.innerHTML = el.innerHTML;
+  const tokens = [];
+  tmp.childNodes.forEach(n => {
+    if (n.nodeType === 3) n.textContent.split(/(\s+)/).forEach(p => { if (p.trim()) tokens.push(p); });
+    else tokens.push(n.outerHTML);
+  });
+  el.innerHTML = tokens.map(t => `<span class="tk" style="display:inline-block">${t}</span>`).join(' ');
+  const spans = Array.from(el.querySelectorAll('.tk'));
+  const lines = []; let top = null, cur = [];
+  spans.forEach(s => { if (top === null || Math.abs(s.offsetTop - top) > 6) { if (cur.length) lines.push(cur); cur = []; top = s.offsetTop; } cur.push(s.innerHTML); });
+  if (cur.length) lines.push(cur);
+  el.innerHTML = lines.map(l => `<span class="split-line"><span>${l.join(' ')}</span></span>`).join('');
+  return el.querySelectorAll('.split-line > span');
+}
+
+if (hasMotion) {
+  document.querySelectorAll('[data-split]').forEach(el => gsap.set(el, { opacity: 0 }));
+  document.fonts.ready.then(() => {
+    document.querySelectorAll('[data-split]').forEach(el => {
+      el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+      const lines = splitLines(el);
+      gsap.set(el, { opacity: 1 });
+      gsap.set(lines, { yPercent: 110 });
+      ScrollTrigger.create({ trigger: el, start: 'top 86%', once: true, onEnter: () => gsap.to(lines, { yPercent: 0, duration: 1.1, stagger: .1, ease: 'power4.out' }) });
+    });
+
+    /* Intro statement: words light up as you scroll through it. */
+    const st = document.getElementById('statement');
+    const words = [];
+    Array.from(st.childNodes).forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(p => { if (p.trim()) { const s = document.createElement('span'); s.textContent = p; frag.appendChild(s); words.push(s); } else if (p) frag.appendChild(document.createTextNode(p)); });
+        n.replaceWith(frag);
+      } else words.push(n);
+    });
+    gsap.fromTo(words, { opacity: .14 }, { opacity: 1, stagger: .1, ease: 'none', scrollTrigger: { trigger: st, start: 'top 80%', end: 'bottom 45%', scrub: .4 } });
+    ScrollTrigger.refresh();
+  });
+
+  gsap.set('[data-reveal]', { opacity: 0, y: 30 });
+  ScrollTrigger.batch('[data-reveal]', { start: 'top 90%', once: true, onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: 1, stagger: .1, ease: 'power3.out', overwrite: true }) });
+}
+
+/* ═══════════════════════════════════════════
+   PILLAR ILLUSTRATIONS
+═══════════════════════════════════════════ */
+const ANIMS = {
+  jar(svg) {
+    const tl = gsap.timeline({ paused: true });
+    tl.from(svg.querySelectorAll('.jc'), { y: -230, opacity: 0, duration: .75, stagger: .16, ease: 'bounce.out' })
+      .from(svg.querySelector('.jar-label'), { scale: 0, rotate: -10, transformOrigin: '50% 50%', duration: .6, ease: 'back.out(2)' }, .2)
+      .from(svg.querySelector('.jar-sprout path'), { scaleY: 0, transformOrigin: '50% 100%', duration: .6, ease: 'power2.out' }, '-=.1')
+      .from(svg.querySelectorAll('.js-leaf'), { scale: 0, duration: .6, stagger: .12, ease: 'back.out(2.4)' }, '-=.3')
+      .from(svg.querySelector('.jar-tag'), { opacity: 0, x: 14, duration: .6 }, '-=.2');
+    const drop = svg.querySelector('.drop-coin');
+    gsap.set(drop, { opacity: 0 });
+    tl.add(() => {
+      gsap.timeline({ repeat: -1, repeatDelay: 2.4 })
+        .fromTo(drop, { y: 0, opacity: 0 }, { opacity: 1, duration: .2 })
+        .to(drop, { y: 160, duration: .6, ease: 'power2.in' }, '<')
+        .to(drop, { opacity: 0, duration: .15 })
+        .to(svg.querySelector('.jar-coins'), { y: 2, duration: .08, yoyo: true, repeat: 1 }, '<');
+    });
+    return tl;
+  },
+  network(svg) {
+    const lines = svg.querySelectorAll('.net-lines path');
+    lines.forEach(l => { const n = l.getTotalLength(); gsap.set(l, { strokeDasharray: n, strokeDashoffset: n }); });
+    const tl = gsap.timeline({ paused: true });
+    tl.from(svg.querySelector('.net-center'), { scale: 0, duration: .7, ease: 'back.out(2.2)' })
+      .to(lines, { strokeDashoffset: 0, duration: .55, stagger: .07, ease: 'power2.out' }, '-=.2')
+      .from(svg.querySelectorAll('.net-node'), { scale: 0, duration: .6, stagger: .09, ease: 'back.out(2.6)' }, '-=.55')
+      .from(svg.querySelector('.net-wave'), { scale: 0, rotate: -12, duration: .6, ease: 'back.out(2.4)' }, '-=.1');
+    tl.add(() => gsap.to(svg.querySelectorAll('.net-node'), { y: i => (i % 2 ? -4 : 4), duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1, stagger: .3 }));
+    return tl;
+  },
+  talk(svg) {
+    const tl = gsap.timeline({ paused: true });
+    tl.from(svg.querySelector('.bub-a'), { scale: 0, duration: .7, ease: 'back.out(1.8)' })
+      .from(svg.querySelectorAll('.bub-a .bl'), { scaleX: 0, transformOrigin: '0% 50%', duration: .45, stagger: .1, ease: 'power3.out' }, '-=.25')
+      .from(svg.querySelector('.bub-dots'), { scale: 0, duration: .45, ease: 'back.out(2.4)' })
+      .to(svg.querySelectorAll('.bub-dots .dot'), { y: -5, duration: .22, stagger: .1, yoyo: true, repeat: 3, ease: 'sine.inOut' })
+      .to(svg.querySelector('.bub-dots'), { scale: 0, opacity: 0, duration: .3, ease: 'power2.in' })
+      .from(svg.querySelector('.bub-b'), { scale: 0, duration: .7, ease: 'back.out(1.8)' }, '-=.05')
+      .from(svg.querySelectorAll('.bub-b .bl'), { scaleX: 0, transformOrigin: '0% 50%', duration: .45, stagger: .1, ease: 'power3.out' }, '-=.25')
+      .from(svg.querySelector('.bub-heart'), { scale: 0, rotate: 30, duration: .8, ease: 'elastic.out(1, .4)' }, '-=.1');
+    tl.add(() => gsap.to(svg.querySelector('.bub-heart'), { scale: 1.12, duration: .5, ease: 'sine.inOut', yoyo: true, repeat: -1, repeatDelay: 1.6 }));
+    return tl;
+  },
+  path(svg) {
+    const path = svg.querySelector('.travel-path'), L = path.getTotalLength();
+    const trav = svg.querySelector('.traveler'), state = { t: 0 };
+    const place = () => { const p = path.getPointAtLength(L * state.t); trav.setAttribute('transform', `translate(${p.x} ${p.y})`); };
+    place();
+    const tl = gsap.timeline({ paused: true });
+    tl.from(svg.querySelector('.sign-warn'), { scale: 0, duration: .6, ease: 'back.out(2.4)' })
+      .from(svg.querySelector('.flag'), { scale: 0, duration: .6, ease: 'back.out(2.4)' }, '-=.4')
+      .from(trav, { opacity: 0, duration: .3 })
+      .to(state, { t: .45, duration: 1, ease: 'power1.inOut', onUpdate: place })
+      .from(svg.querySelector('.think'), { scale: 0, duration: .5, ease: 'back.out(2.6)' })
+      .to(svg.querySelector('.think'), { scale: 0, duration: .3, delay: .7, ease: 'power2.in' })
+      .to(state, { t: 1, duration: 1.1, ease: 'power2.out', onUpdate: place })
+      .to(svg.querySelector('.flag-cloth'), { skewY: -4, transformOrigin: '0% 50%', duration: .35, yoyo: true, repeat: 3, ease: 'sine.inOut' }, '-=.2');
+    tl.add(() => gsap.to(svg.querySelector('.road-dash'), { strokeDashoffset: -40, duration: 1.4, ease: 'none', repeat: -1 }), 0);
+    return tl;
+  },
+};
+
+function drawChecks(step) {
+  if (step.dataset.checked) return; step.dataset.checked = 1;
+  const items = step.querySelectorAll('.learn li');
+  items.forEach((li, k) => {
+    const bg = li.querySelector('.ck-bg'), mk = li.querySelector('.ck-mark'), L = mk.getTotalLength();
+    gsap.timeline({ delay: .35 + k * .12 })
+      .fromTo(bg, { scale: 0, rotate: -45, transformOrigin: '50% 50%' }, { scale: 1, rotate: 0, duration: .55, ease: 'back.out(2.2)' })
+      .fromTo(mk, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: .4, ease: 'power2.out' }, '-=.25')
+      .fromTo(li, { x: -6, opacity: 0 }, { x: 0, opacity: 1, duration: .5, ease: 'power3.out' }, 0);
+  });
+}
+(function story() {
+  const steps = Array.from(document.querySelectorAll('.step'));
+  const figs = steps.map(s => s.querySelector('.fig'));
+  if (!hasMotion) {
+    const svg = figs[3].querySelector('svg'), p = svg.querySelector('.travel-path'), e = p.getPointAtLength(p.getTotalLength());
+    svg.querySelector('.traveler').setAttribute('transform', `translate(${e.x} ${e.y})`);
+    figs[0].querySelector('.drop-coin').style.display = 'none';
+    return;
+  }
+  const tls = steps.map((s, i) => ANIMS[s.dataset.anim](figs[i].querySelector('svg')));
+  const stage = document.getElementById('stage'), stageBg = document.getElementById('stageBg'), story = document.getElementById('story');
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 901px)', () => {
+    story.classList.add('js-story');
+    figs.forEach(f => { stage.appendChild(f); gsap.set(f, { autoAlpha: 0 }); });
+    let active = -1;
+    const activate = i => {
+      if (i === active) return;
+      const prev = active; active = i;
+      steps.forEach((s, k) => s.classList.toggle('on', k === i));
+      if (prev >= 0) gsap.to(figs[prev], { autoAlpha: 0, scale: .94, y: i > prev ? -40 : 40, duration: .45, ease: 'power2.in', overwrite: true });
+      gsap.fromTo(figs[i], { autoAlpha: 0, scale: .94, y: prev < 0 ? 20 : (i > prev ? 50 : -50) }, { autoAlpha: 1, scale: 1, y: 0, duration: .9, delay: prev >= 0 ? .2 : 0, ease: 'expo.out', overwrite: true });
+      gsap.to(stageBg, { backgroundColor: steps[i].dataset.bg, duration: .8, ease: 'power2.out' });
+      if (tls[i].progress() === 0) tls[i].play();
+      drawChecks(steps[i]);
+    };
+    steps.forEach((s, i) => ScrollTrigger.create({ trigger: s, start: 'top 55%', end: 'bottom 55%', onToggle: self => { if (self.isActive) activate(i); } }));
+    ScrollTrigger.create({ trigger: story, start: 'top 75%', once: true, onEnter: () => { if (active < 0) activate(0); } });
+    ScrollTrigger.refresh();
+    return () => {
+      story.classList.remove('js-story');
+      figs.forEach((f, i) => { gsap.set(f, { clearProps: 'all' }); steps[i].prepend(f); });
+    };
+  });
+  mm.add('(max-width: 900px)', () => {
+    figs.forEach((f, i) => ScrollTrigger.create({ trigger: f, start: 'top 75%', once: true, onEnter: () => { if (tls[i].progress() === 0) tls[i].play(); drawChecks(steps[i]); } }));
+  });
+})();
+
+/* ═══════════════════════════════════════════
+   GROW CALCULATOR
+═══════════════════════════════════════════ */
+(function grow() {
+  const END_AGE = 30;
+  const fmt = new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 });
+  const amount = document.getElementById('amount'), rate = document.getElementById('rate');
+  const amountOut = document.getElementById('amountOut'), rateOut = document.getElementById('rateOut');
+  const diffOut = document.getElementById('diffOut');
+  const cols = Array.from(document.querySelectorAll('.col')), colsEl = document.getElementById('cols');
+  const tbody = document.querySelector('#growTable tbody');
+  const tip = document.getElementById('tip'), chart = document.getElementById('chart');
+  const shown = { diff: 0 }, colShown = cols.map(() => ({ v: 0 }));
+  let revealed = !hasMotion, data = [];
+
+  function future(m, r, years) {
+    const n = years * 12, i = r / 100 / 12;
+    const total = i === 0 ? m * n : m * ((Math.pow(1 + i, n) - 1) / i);
+    return { put: m * n, total, interest: total - m * n };
+  }
+  const setPct = el => el.style.setProperty('--pct', ((el.value - el.min) / (el.max - el.min) * 100) + '%');
+
+  function update(instant) {
+    const m = +amount.value, r = +rate.value;
+    amountOut.textContent = fmt.format(m);
+    rateOut.textContent = (Number.isInteger(r) ? r : r.toFixed(1)) + '%';
+    setPct(amount); setPct(rate);
+    data = cols.map(c => ({ age: +c.dataset.age, ...future(m, r, END_AGE - +c.dataset.age) }));
+    const diff = data[0].total - data[2].total;
+    tbody.innerHTML = data.map(d => `<tr><td>${d.age}</td><td>${fmt.format(d.put)}</td><td>${fmt.format(d.interest)}</td><td>${fmt.format(d.total)}</td></tr>`).join('');
+    if (!revealed) { diffOut.textContent = fmt.format(diff); return; }
+    const scale = (colsEl.clientHeight - 110) / data[0].total;
+    const dur = instant ? 0 : 1.1;
+    cols.forEach((c, k) => {
+      const d = data[k], valEl = c.querySelector('.col-val');
+      const hIn = Math.max(4, d.put * scale), hInt = Math.max(3, d.interest * scale);
+      if (hasMotion) {
+        gsap.to(c.querySelector('.seg-in'), { height: hIn, duration: dur, ease: 'elastic.out(1, .8)', delay: instant ? 0 : k * .08 });
+        gsap.to(c.querySelector('.seg-int'), { height: hInt, duration: dur, ease: 'elastic.out(1, .8)', delay: instant ? 0 : k * .08 + .06 });
+        gsap.to(colShown[k], { v: d.total, duration: dur * .8, ease: 'power3.out', onUpdate: () => { valEl.textContent = fmt.format(colShown[k].v); } });
+      } else {
+        c.querySelector('.seg-in').style.height = hIn + 'px'; c.querySelector('.seg-int').style.height = hInt + 'px';
+        valEl.textContent = fmt.format(d.total);
+      }
+    });
+    if (hasMotion) gsap.to(shown, { diff, duration: dur * .8, ease: 'power3.out', onUpdate: () => { diffOut.textContent = fmt.format(shown.diff); } });
+    else diffOut.textContent = fmt.format(diff);
+  }
+  let raf;
+  [amount, rate].forEach(el => el.addEventListener('input', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => update(false)); }));
+  window.addEventListener('resize', () => { if (revealed) update(true); });
+  if (hasMotion) ScrollTrigger.create({ trigger: '#cols', start: 'top 85%', once: true, onEnter: () => { revealed = true; update(false); } });
+  update(true);
+
+  cols.forEach((c, k) => {
+    c.addEventListener('pointermove', e => {
+      const d = data[k], cr = chart.getBoundingClientRect();
+      tip.innerHTML = `<b>Start at ${d.age}</b><br/><i style="background:var(--green)"></i>Put in ${fmt.format(d.put)}<br/><i style="background:var(--gold)"></i>Interest ${fmt.format(d.interest)}<br/>Total at 30: <b>${fmt.format(d.total)}</b>`;
+      tip.style.left = Math.max(10, Math.min(e.clientX - cr.left + 16, cr.width - 220)) + 'px';
+      tip.style.top = (e.clientY - cr.top - 130) + 'px';
+      tip.classList.add('on');
+    });
+    c.addEventListener('pointerleave', () => tip.classList.remove('on'));
+  });
+})();
+
+/* ═══════════════════════════════════════════
+   QUESTIONS: drifting speech bubbles
+═══════════════════════════════════════════ */
+(function questions() {
+  const Q = [
+    ['When should I start saving, and how do I actually begin?', ''],
+    ['What is the difference between a savings account and a chequing account?', 'v2'],
+    ['What are interest rates, and how do they help my money grow?', 'v3'],
+    ['What should I expect when I get my first paycheque?', ''],
+    ['How do I set up a budget that lets me save while still spending responsibly?', 'v4'],
+    ['How do I build a network as a teen, and why does it matter so early?', 'v2'],
+    ['What are the main business rules to know when meeting new people?', ''],
+    ['Black, brown or blue? What is best for a formal or professional setting?', 'v3', true],
+    ['What should I order, and avoid ordering, at a business lunch?', 'v2'],
+    ['How do I keep in touch with mentors, teachers and contacts so they remember me?', ''],
+    ['How do I set boundaries with peers and handle pressure?', 'v4'],
+    ['How do I communicate clearly and respectfully when resolving a conflict?', 'v3'],
+  ];
+  document.getElementById('qList').innerHTML = Q.map(q => `<li>${q[0]}</li>`).join('');
+  const tracks = Array.from(document.querySelectorAll('#marquee .track'));
+  const sets = [Q.slice(0, 6), Q.slice(6)];
+  const bubble = (q, dup) => `<div class="bubble ${q[1]}${dup ? ' dup' : ''}">${q[0]}${q[2] ? '<span class="sw"><i style="background:#17181a"></i><i style="background:#6b4528"></i><i style="background:#1f3a66"></i></span>' : ''}</div>`;
+  tracks.forEach((track, i) => { track.innerHTML = sets[i].map(q => bubble(q)).join('') + sets[i].map(q => bubble(q, true)).join(''); });
+  if (!hasMotion) { document.getElementById('marquee').classList.add('no-marquee'); return; }
+  tracks.forEach((track, i) => {
+    const tw = i === 0
+      ? gsap.to(track, { xPercent: -50, duration: 70, ease: 'none', repeat: -1 })
+      : gsap.fromTo(track, { xPercent: -50 }, { xPercent: 0, duration: 80, ease: 'none', repeat: -1 });
+    const row = track.parentElement;
+    row.addEventListener('pointerenter', () => gsap.to(tw, { timeScale: .12, duration: .6 }));
+    row.addEventListener('pointerleave', () => gsap.to(tw, { timeScale: 1, duration: .6 }));
+  });
+  gsap.from('#marquee .row', { opacity: 0, x: i => (i ? -80 : 80), duration: 1.2, stagger: .15, ease: 'power3.out', scrollTrigger: { trigger: '#marquee', start: 'top 85%', once: true } });
+})();
+</script>
+</body>
+</html>
