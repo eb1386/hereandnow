@@ -4,13 +4,13 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Here and Now by VentureLift</title>
-<meta name="description" content="Here and Now: A Financial Start. Personal finance, people skills and smart choices for students in Grades 7–8. By VentureLift, hosted at St. George's School, Vancouver."/>
+<meta name="description" content="Here and Now: A Financial Start. Personal finance, people skills and communication for students in Grades 7–8. By VentureLift, hosted at St. George's School, Vancouver."/>
 <meta name="theme-color" content="#eef5ef"/>
 <link rel="canonical" href="https://hereandnow.venturelift.org/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Here and Now by VentureLift"/>
 <meta property="og:title" content="Here and Now by VentureLift"/>
-<meta property="og:description" content="Saving, budgeting, first impressions and smart choices for students in Grades 7–8. June 29 to July 1, 2027, hosted by St. George's School."/>
+<meta property="og:description" content="Saving, budgeting, first impressions and clear communication for students in Grades 7–8. June 29 to July 1, 2027, hosted by St. George's School."/>
 <meta property="og:url" content="https://hereandnow.venturelift.org/"/>
 <meta property="og:image" content="https://hereandnow.venturelift.org/card/here-and-now-card-front.png"/>
 <meta property="og:image:width" content="1800"/>
@@ -130,25 +130,28 @@ button { font: inherit; }
 .hero-lede { margin-top: 0; max-width: 30ch; font-family: var(--font-heading); font-size: clamp(1.5rem, 2.7vw, 2.35rem); font-weight: 600; line-height: 1.16; letter-spacing: -.03em; color: var(--ink); }
 .hero-lede span { color: var(--green); }
 .hero-actions { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
-.hero-title {
+.hero-mark {
   position: relative; z-index: 2; margin-top: auto;
-  padding-top: clamp(48px, 8vh, 96px); margin-bottom: clamp(110px, 17vh, 200px);
+  padding-top: clamp(40px, 6vh, 80px); margin-bottom: clamp(110px, 17vh, 200px);
+  text-align: center;
+}
+.mark-inner { display: inline-block; text-align: left; }
+.lockup { display: flex; justify-content: flex-end; align-items: center; gap: clamp(14px, 1.5vw, 22px); margin: 0 .4vw clamp(12px, 1.5vw, 20px) 0; }
+.lockup img { display: block; width: auto; }
+.lk-sg { height: clamp(42px, 4.4vw, 70px); }
+.lk-vl { height: clamp(37px, 3.8vw, 60px); }
+.lk-div { width: 1.5px; height: clamp(36px, 3.8vw, 60px); background: rgba(16,36,26,.25); }
+.lk img { transition: opacity .2s; }
+.lk:hover img { opacity: .7; }
+.hero-title {
   font-family: var(--font-heading); font-weight: 800; color: var(--ink);
   font-size: clamp(4.6rem, 14.4vw, 16rem); line-height: .8; letter-spacing: -.045em;
-  text-align: center; white-space: nowrap;
+  white-space: nowrap;
 }
 .hero-title .t { position: relative; display: inline-block; }
 .hero-title .ch { display: inline-block; will-change: transform; }
 .hero-title .and { color: var(--green); font-weight: 600; }
 .hero-title .sp { display: inline-block; width: .18em; }
-.hero-title .by {
-  position: absolute; right: .08em; top: -.55em;
-  font-weight: 600; letter-spacing: -.02em;
-  font-size: .13em; line-height: 1; color: var(--green-dark);
-  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .18em; text-decoration-thickness: .06em;
-  transition: color .2s, text-decoration-color .25s;
-}
-.hero-title .by:hover { color: var(--green); text-decoration-color: currentColor; }
 .hero-title .m-br { display: none; }
 .scroll-cue { position: absolute; z-index: 4; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.85); }
 .scroll-cue i { width: 2px; height: 26px; border-radius: 2px; background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,0)); animation: cue 2.2s ease-in-out infinite; transform-origin: top; }
@@ -162,10 +165,14 @@ button { font: inherit; }
   .hero-info { width: 100%; padding: 16px 18px 17px; border-radius: 20px; }
   .hi-date { font-size: 1.16rem; margin-bottom: 6px; }
   .hi-line { font-size: .95rem; line-height: 1.5; }
-  .hero-title { font-size: 23vw; line-height: .86; padding-top: 38px; margin-bottom: max(92px, 12svh); }
+  .hero-mark { padding-top: 30px; margin-bottom: max(92px, 12svh); }
+  .lockup { justify-content: flex-start; gap: 12px; margin: 0 0 14px .05em; }
+  .lk-sg { height: 38px; }
+  .lk-vl { height: 33px; }
+  .lk-div { height: 33px; }
+  .hero-title { font-size: 23vw; line-height: .86; }
   .hero-title .m-br { display: block; }
   .hero-title .sp2 { display: none; }
-  .hero-title .by { top: -1.3em; right: auto; left: .1em; font-size: .16em; }
   .hero-title .t { text-align: left; }
   .scroll-cue { display: none; }
 }
@@ -178,7 +185,12 @@ button { font: inherit; }
   .hero-info { padding: 13px 16px 14px; }
   .hi-date { font-size: 1.06rem; margin-bottom: 4px; }
   .hi-line { font-size: .9rem; line-height: 1.45; }
-  .hero-title { font-size: 21vw; padding-top: 32px; margin-bottom: max(70px, 10svh); }
+  .hero-mark { padding-top: 24px; margin-bottom: max(70px, 10svh); }
+  .lockup { margin-bottom: 11px; }
+  .lk-sg { height: 33px; }
+  .lk-vl { height: 29px; }
+  .lk-div { height: 29px; }
+  .hero-title { font-size: 21vw; }
 }
 
 /* ───────── Buttons ───────── */
@@ -228,7 +240,6 @@ button { font: inherit; }
 .step .fig { border-radius: 28px; background: var(--mint); padding: 8%; margin-bottom: 28px; }
 .step[data-i="1"] .fig { background: #f4ecd3; }
 .step[data-i="2"] .fig { background: #e3edf3; }
-.step[data-i="3"] .fig { background: #efe9df; }
 .step h3 { font-family: var(--font-heading); font-size: clamp(2rem, 3.6vw, 3.2rem); font-weight: 700; line-height: 1.02; letter-spacing: -.045em; color: var(--ink); }
 .step h3 em { font-style: normal; color: var(--green); }
 .step p { margin-top: 20px; font-size: 1.1rem; line-height: 1.75; color: var(--text); max-width: 50ch; }
@@ -390,7 +401,7 @@ input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
   <div class="hero-copy">
     <div class="wrap hero-grid">
       <div class="hero-main">
-      <p class="hero-lede hero-in">Saving, budgeting, first impressions and smart choices. The habits that make independence easier, <span>learned early.</span></p>
+      <p class="hero-lede hero-in">Saving, budgeting, first impressions and clear communication. The habits that make independence easier, <span>learned early.</span></p>
       <div class="hero-actions hero-in">
         <a class="btn btn-green" href="#program">Explore the program <span class="arr">→</span></a>
         <a class="btn btn-line" href="#contact">Get in touch</a>
@@ -406,10 +417,19 @@ input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
     </div>
   </div>
 
+  <div class="hero-mark">
+   <div class="mark-inner">
+    <div class="lockup">
+      <a class="lk" href="https://www.stgeorges.bc.ca"><img class="lk-sg" src="saint-ink.png" alt="St. George's School" width="706" height="200"/></a>
+      <span class="lk-div" aria-hidden="true"></span>
+      <a class="lk" href="https://www.venturelift.org"><img class="lk-vl" src="venture-ink.png" alt="VentureLift" width="302" height="200"/></a>
+    </div>
   <h1 class="hero-title">
     <span class="sr-only">Here and Now</span>
-    <span class="t"><a class="by" href="https://www.venturelift.org">by VentureLift</a><span aria-hidden="true"><span class="ch">H</span><span class="ch">e</span><span class="ch">r</span><span class="ch">e</span><span class="sp"></span><span class="ch and">a</span><span class="ch and">n</span><span class="ch and">d</span><br class="m-br"/><span class="sp sp2"></span><span class="ch">N</span><span class="ch">o</span><span class="ch">w</span></span></span>
+    <span class="t"><span aria-hidden="true"><span class="ch">H</span><span class="ch">e</span><span class="ch">r</span><span class="ch">e</span><span class="sp"></span><span class="ch and">a</span><span class="ch and">n</span><span class="ch and">d</span><br class="m-br"/><span class="sp sp2"></span><span class="ch">N</span><span class="ch">o</span><span class="ch">w</span></span></span>
   </h1>
+   </div>
+  </div>
 
   <canvas class="meadow meadow-front" id="meadowFront" aria-hidden="true"></canvas>
   <a class="scroll-cue" href="#program" aria-label="Scroll to the program">Scroll<i></i></a>
@@ -419,8 +439,8 @@ input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
 <!-- ═════════ INTRO ═════════ -->
 <section class="intro" id="program" data-nav="dark" aria-label="About Here and Now">
   <div class="wrap intro-inner">
-    <p class="statement" id="statement">Money habits, people skills and good judgment don't have to wait. <span class="hl">Here and Now</span> gives students a head start on all three, <span class="hl-g">right now.</span></p>
-    <p class="intro-sub" data-reveal>Here and Now: A Financial Start introduces 7th and 8th grade students to the fundamentals of personal finance while building the interpersonal habits and decision-making skills needed for early independence. Students learn how to make their money work for them, how to present themselves with confidence and how to navigate their social world with good sense.</p>
+    <p class="statement" id="statement">Money habits and people skills don't have to wait. <span class="hl">Here and Now</span> gives students a head start on both, <span class="hl-g">right now.</span></p>
+    <p class="intro-sub" data-reveal>Here and Now: A Financial Start introduces 7th and 8th grade students to the fundamentals of personal finance while building the interpersonal habits and professional confidence needed for early independence. Students learn how to make their money work for them, how to present themselves with confidence and how to communicate clearly and respectfully with adults and peers.</p>
   </div>
 </section>
 
@@ -535,42 +555,6 @@ input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
           </ul>
         </article>
 
-        <article class="step" data-i="3" data-anim="path" data-bg="#efe9df">
-          <div class="fig">
-            <svg class="ill" viewBox="0 0 320 260" role="img" aria-label="A path splits in two; a traveller pauses, then chooses the safe way toward a flag">
-              <path d="M160 262 L160 160 C 160 120 110 100 76 60" fill="none" stroke="#d9d2c4" stroke-width="30" stroke-linecap="round"/>
-              <path d="M160 160 C 160 120 210 100 244 60" fill="none" stroke="#cfe7d7" stroke-width="30" stroke-linecap="round"/>
-              <path class="road-dash" d="M160 258 L160 160 C 160 120 210 100 244 60" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 12"/>
-              <g class="sign-warn" style="transform-origin:62px 70px">
-                <path class="ln" d="M62 96 L62 70"/>
-                <path class="f-gold" d="M62 26 L88 70 L36 70 Z"/><path class="ln" d="M62 26 L88 70 L36 70 Z"/>
-                <path d="M62 42 L62 56" stroke="#17271f" stroke-width="4" stroke-linecap="round"/><circle class="f-ink" cx="62" cy="63" r="2.6"/>
-              </g>
-              <g class="flag" style="transform-origin:252px 70px">
-                <path class="ln" d="M252 74 L252 16"/>
-                <path class="flag-cloth f-green" d="M252 18 C 268 12 280 26 296 20 L296 46 C 280 52 268 38 252 44 Z"/>
-                <path class="ln-thin" d="M252 18 C 268 12 280 26 296 20 L296 46 C 280 52 268 38 252 44 Z"/>
-                <path d="M266 30 l5 5 l10 -10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </g>
-              <g class="think" style="transform-origin:120px 150px">
-                <circle class="f-white" cx="112" cy="140" r="17"/><circle class="ln-thin" cx="112" cy="140" r="17"/>
-                <text x="112" y="147" text-anchor="middle" font-size="20" fill="#17271f">?</text>
-                <circle class="f-white" cx="132" cy="160" r="4"/><circle class="ln-thin" cx="132" cy="160" r="4"/>
-              </g>
-              <path class="travel-path" d="M160 246 L160 160 C 160 120 210 100 238 66" fill="none" stroke="none"/>
-              <g class="traveler"><circle cx="0" cy="0" r="13" fill="#fff"/><circle cx="0" cy="0" r="9" class="f-green"/><circle cx="0" cy="0" r="13" class="ln-thin"/></g>
-            </svg>
-          </div>
-          <h3>Making safer <em>choices</em></h3>
-          <p>Decision-making away from home. Students learn practical strategies for handling peer pressure, social gatherings and risky situations, using sound judgment and growing independence.</p>
-          <ul class="learn">
-            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Peer pressure</li>
-            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Social gatherings</li>
-            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Risky situations</li>
-            <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg>Sound judgment</li>
-          </ul>
-        </article>
-
       </div>
     </div>
   </div>
@@ -611,7 +595,7 @@ input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
 <section class="questions" id="questions" data-nav="dark" aria-labelledby="qTitle">
   <div class="wrap questions-head">
     <h2 class="h2" id="qTitle" data-split>The questions nobody explains, <em>answered.</em></h2>
-    <p class="lede" data-reveal>From a first savings account to the right shoes for a business lunch, these are the questions students leave able to answer.</p>
+    <p class="lede" data-reveal>From a first savings account to what to wear to a business lunch, these are the questions students leave able to answer.</p>
   </div>
   <ul class="sr-only" id="qList"></ul>
   <div class="marquee" id="marquee" aria-hidden="true">
@@ -880,13 +864,13 @@ if (hasMotion) {
   gsap.timeline({ defaults: { ease: 'power3.out' } })
     .from('.sun', { opacity: 0, scale: .8, duration: 2.4, ease: 'power2.out' }, 0)
     .from('.hero-title .ch', { yPercent: 70, opacity: 0, duration: 1.4, stagger: .06, ease: 'expo.out' }, .55)
-        .from('.hero-title .by', { opacity: 0, y: 12, duration: 1 }, 1.4)
+        .from('.lockup > *', { opacity: 0, y: 12, duration: 1, stagger: .12 }, 1.3)
     .from('.hero-in', { opacity: 0, y: 22, duration: 1, stagger: .12 }, 1.2)
     .from('#pillNav', { opacity: 0, y: -24, duration: 1, ease: 'expo.out' }, 1.5)
     .from('.scroll-cue', { opacity: 0, duration: 1 }, 2.2);
 
   gsap.matchMedia().add('(min-width: 701px)', () => {
-    gsap.to('.hero-title', { yPercent: -18, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.hero-mark', { yPercent: -14, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
     gsap.to('.hero-copy', { y: -80, opacity: 0, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: '70% top', scrub: true } });
   });
   gsap.to('.sun', { y: 120, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
@@ -1022,23 +1006,6 @@ const ANIMS = {
     tl.add(() => gsap.to(svg.querySelector('.bub-heart'), { scale: 1.12, duration: .5, ease: 'sine.inOut', yoyo: true, repeat: -1, repeatDelay: 1.6 }));
     return tl;
   },
-  path(svg) {
-    const path = svg.querySelector('.travel-path'), L = path.getTotalLength();
-    const trav = svg.querySelector('.traveler'), state = { t: 0 };
-    const place = () => { const p = path.getPointAtLength(L * state.t); trav.setAttribute('transform', `translate(${p.x} ${p.y})`); };
-    place();
-    const tl = gsap.timeline({ paused: true });
-    tl.from(svg.querySelector('.sign-warn'), { scale: 0, duration: .6, ease: 'back.out(2.4)' })
-      .from(svg.querySelector('.flag'), { scale: 0, duration: .6, ease: 'back.out(2.4)' }, '-=.4')
-      .from(trav, { opacity: 0, duration: .3 })
-      .to(state, { t: .45, duration: 1, ease: 'power1.inOut', onUpdate: place })
-      .from(svg.querySelector('.think'), { scale: 0, duration: .5, ease: 'back.out(2.6)' })
-      .to(svg.querySelector('.think'), { scale: 0, duration: .3, delay: .7, ease: 'power2.in' })
-      .to(state, { t: 1, duration: 1.1, ease: 'power2.out', onUpdate: place })
-      .to(svg.querySelector('.flag-cloth'), { skewY: -4, transformOrigin: '0% 50%', duration: .35, yoyo: true, repeat: 3, ease: 'sine.inOut' }, '-=.2');
-    tl.add(() => gsap.to(svg.querySelector('.road-dash'), { strokeDashoffset: -40, duration: 1.4, ease: 'none', repeat: -1 }), 0);
-    return tl;
-  },
 };
 
 function drawChecks(step) {
@@ -1056,8 +1023,6 @@ function drawChecks(step) {
   const steps = Array.from(document.querySelectorAll('.step'));
   const figs = steps.map(s => s.querySelector('.fig'));
   if (!hasMotion) {
-    const svg = figs[3].querySelector('svg'), p = svg.querySelector('.travel-path'), e = p.getPointAtLength(p.getTotalLength());
-    svg.querySelector('.traveler').setAttribute('transform', `translate(${e.x} ${e.y})`);
     figs[0].querySelector('.drop-coin').style.display = 'none';
     return;
   }
@@ -1169,15 +1134,14 @@ function drawChecks(step) {
     ['How do I set up a budget that lets me save while still spending responsibly?', 'v4'],
     ['How do I build a network as a teen, and why does it matter so early?', 'v2'],
     ['What are the main business rules to know when meeting new people?', ''],
-    ['Black, brown or blue? What is best for a formal or professional setting?', 'v3', true],
+    ['What should I wear to a formal or professional event?', 'v3'],
     ['What should I order, and avoid ordering, at a business lunch?', 'v2'],
-    ['How do I keep in touch with mentors, teachers and contacts so they remember me?', ''],
-    ['How do I set boundaries with peers and handle pressure?', 'v4'],
+    ['How do I set healthy boundaries with peers?', 'v4'],
     ['How do I communicate clearly and respectfully when resolving a conflict?', 'v3'],
   ];
   document.getElementById('qList').innerHTML = Q.map(q => `<li>${q[0]}</li>`).join('');
   const tracks = Array.from(document.querySelectorAll('#marquee .track'));
-  const sets = [Q.slice(0, 6), Q.slice(6)];
+  const sets = [Q.slice(0, 5), Q.slice(5)];
   const bubble = (q, dup) => `<div class="bubble ${q[1]}${dup ? ' dup' : ''}">${q[0]}${q[2] ? '<span class="sw"><i style="background:#17181a"></i><i style="background:#6b4528"></i><i style="background:#1f3a66"></i></span>' : ''}</div>`;
   tracks.forEach((track, i) => { track.innerHTML = sets[i].map(q => bubble(q)).join('') + sets[i].map(q => bubble(q, true)).join(''); });
   if (!hasMotion) { document.getElementById('marquee').classList.add('no-marquee'); return; }

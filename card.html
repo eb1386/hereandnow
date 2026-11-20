@@ -81,7 +81,11 @@ img, canvas { display: block; }
 .front-title .ch { display: inline-block; }
 .front-title .and { color: var(--green); font-weight: 600; }
 .front-title .sp { display: inline-block; width: .18em; }
-.front-title .by { position: absolute; right: .08em; top: -.55em; font-size: .13em; font-weight: 600; letter-spacing: -.02em; line-height: 1; color: var(--green-dark); }
+.front-title .lockup { position: absolute; right: .06em; bottom: calc(100% + 16px); display: flex; align-items: center; gap: 16px; }
+.front-title .lockup img { display: block; width: auto; }
+.front-title .lk-sg { height: 52px; }
+.front-title .lk-vl { height: 45px; }
+.front-title .lk-div { width: 1.5px; height: 44px; background: rgba(16,36,26,.25); }
 
 /* ───── Back ───── */
 .back { background: linear-gradient(180deg, #eef4ea 0%, #f4f2e4 70%, #f7f1dd 100%); }
@@ -149,8 +153,8 @@ body.export-print .side { break-after: page; width: var(--W); height: var(--H); 
       <section class="side front" aria-label="Card front">
         <div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div>
         <canvas class="meadow m-back" id="fBack" aria-hidden="true"></canvas>
-        <p class="front-lede">Saving, budgeting, first impressions and smart choices. The habits that make independence easier, <span>learned early.</span></p>
-        <h1 class="front-title"><span class="t"><a class="by" href="https://www.venturelift.org">by VentureLift</a><span class="ch">Here</span><span class="sp"></span><span class="ch and">and</span><span class="sp"></span><span class="ch">Now</span></span></h1>
+        <p class="front-lede">Saving, budgeting, first impressions and clear communication. The habits that make independence easier, <span>learned early.</span></p>
+        <h1 class="front-title"><span class="t"><span class="lockup"><img class="lk-sg" src="saint-ink.png" alt="St. George's School"/><span class="lk-div"></span><img class="lk-vl" src="venture-ink.png" alt="VentureLift"/></span><span class="ch">Here</span><span class="sp"></span><span class="ch and">and</span><span class="sp"></span><span class="ch">Now</span></span></h1>
         <canvas class="meadow m-front" id="fFront" aria-hidden="true"></canvas>
       </section>
 
@@ -177,7 +181,6 @@ body.export-print .side { break-after: page; width: var(--W); height: var(--H); 
               <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg><div><b>Smart money management</b><small>Saving, budgeting, interest and a first paycheque</small></div></li>
               <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg><div><b>Networking and business etiquette</b><small>First impressions, active listening and business lunch manners</small></div></li>
               <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg><div><b>Respectful communication</b><small>Boundaries, healthy expectations and resolving conflict</small></div></li>
-              <li><svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><rect class="ck-bg" x="1" y="1" width="22" height="22" rx="7"/><path class="ck-mark" d="M7 12.4 L10.6 16 L17.2 8.6"/></svg><div><b>Making safer choices</b><small>Peer pressure, social gatherings and sound judgment</small></div></li>
             </ul>
           </div>
         </div>
